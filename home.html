@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - BiblioTec</title>
+    <!--CSS - ESTILOS-->
+    <link rel="stylesheet" href="frontend/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="frontend/vendor/fontAwesome/css/all.css">
+    <link rel="stylesheet" href="/frontend/assets/css/style_home.css">
+    <link rel="stylesheet" href="frontend/vendor/sweetAlert/dist/sweetalert2.css">
+    <!--JS - SCRIPTS-->
+    <script src="frontend/vendor/scripts/jquery-3.7.1.js" defer></script>
+    <script src="frontend/vendor/bootstrap/js/bootstrap.bundle.js" defer></script>
+    <script src="frontend/vendor/sweetAlert/dist/sweetalert2.js" defer></script>
+
+    <script src="frontend/screens/controllers/controllerAluno.js" defer></script>
+</head>
+<body>
+
+<!--SIDEBAR-->
+
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-auto min-vh-100 bg-dark">
+      <div class="pt-4 pb-1 px-2">
+        <a class="text-white text-decoration-none">
+          <span class="fs-4 d-none d-sm-inline">BIBLIOTEC</span>
+        </a>
+      </div>
+      <hr class="text-white"></hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="" class="nav-link active text-white">
+            <span class="d-none d-sm-inline">Status</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white btn-new">
+            <i class="fa-solid fa-user m-1"></i>
+            <span class="d-none d-sm-inline">Cadastrar Usuário</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link text-white">
+            <i class="fa-solid fa-book m-1"></i>
+            <span class="d-none d-sm-inline">Cadastrar Livro</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link text-white">
+            <i class="fa-solid fa-hand-holding m-1"></i>
+            <span class="d-none d-sm-inline">Empréstimo</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link text-white">
+            <i class="fa-solid fa-reply m-1"></i>
+            <span class="d-none d-sm-inline">Devolução</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link text-white">
+            <i class="fa-solid fa-receipt m-1"></i>
+            <span class="d-none d-sm-inline">Relatório</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="dropdown open p-3">
+        <button class="btn border-none dropdown-toggle text-white" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa-solid fa-user m-1"></i>
+          Nome User
+        </button>
+        <div class="dropdown-menu" aria-labelledby="triggerId">
+          <button class="dropdown-item" href="#">Configurações</button>
+          <button class="dropdown-item" href="#">Trocar de Usuário</button>
+          <button class="dropdown-item" href="#"><i class="fa-solid fa-arrow-right-from-bracket m-1"></i> Sair do Sistema</button>
+        </div>
+      </div>
+        
+    </div>
+    
+    <!--TABELA-->
+
+    <div class="col">
+      <div class="container">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class="text-center">RM</th>
+                  <th scope="col" class="text-center">Nome</th>
+                  <th scope="col" class="text-center">Série</th>
+                  <th scope="col" class="text-center">Livro</th>
+                  <th scope="col" class="text-center">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">22198</td>
+                  <td class="text-center">Vinícius Oliveira Santana</td>
+                  <td class="text-center">3º DS</td>
+                  <td class="text-center">Omori - Mangá</td>
+                  <td class="text-center">
+                    <button class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+  </div>
+</div>
+
+
+<!--FORULARIO - MODAL-->
+<div id="modal-aluno" class="modal fade" tabindex="-1" aria-labelledby="my-modal-title" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="my-modal-title">Title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-aluno">
+          <div class="mb-3">
+            <label for="ra" class="form-label">RA</label>
+            <input type="number" name="ra" id="ra" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" name="nome" id="nome" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="nascimento" class="form-label">Nascimento</label>
+            <input type="date" name="nascimento" id="nascimento" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" name="email" id="email" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary w-100 btn-save">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+</body>
+</html>

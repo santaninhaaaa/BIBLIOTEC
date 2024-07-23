@@ -18,4 +18,4 @@ try{
         'message' => 'Erro: '.$e->getMessage()
     );
 }
-echo json_encode($return);
+// echo json_encode($return);
