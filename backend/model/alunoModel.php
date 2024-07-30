@@ -11,8 +11,10 @@ if($_POST['operacao'] == 'create'){
 
     if(empty($_POST['ra']) || 
        empty($_POST['nome']) ||
+       empty($_POST['serie']) ||
        empty($_POST['nascimento']) ||
-       empty($_POST['email'])){
+       empty($_POST['email']) ||
+       empty($_POST['telefone'])){
 
         $dados = [
             'type' => 'error',
@@ -21,13 +23,15 @@ if($_POST['operacao'] == 'create'){
     }else{
 
         try{
-            $sql = "INSERT INTO ALUNO (RA, NOME, NASCIMENTO, EMAIL) VALUES (?,?,?,?)";
+            $sql = "INSERT INTO ALUNO (RA, NOME, SERIE, NASCIMENTO, EMAIL, TELEFONE) VALUES (?,?,?,?,?,?)";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
             $stmt -> execute([ //executa sql
                 $_POST['ra'],
                 $_POST['nome'],
+                $_POST['serie'],
                 $_POST['nascimento'],
-                $_POST['email']
+                $_POST['email'],
+                $_POST['telefone']
             ]);
             $dados = [
                 'type' => 'success',
@@ -63,8 +67,10 @@ if($_POST['operacao'] == 'read'){
 if($_POST['operacao'] == 'update'){
 
     if(empty($_POST['nome']) ||
+       empty($_POST['serie']) ||
        empty($_POST['nascimento']) ||
-       empty($_POST['email'])){
+       empty($_POST['email']) ||
+       empty($_POST['telefone'])){
 
         $dados = [
             'type' => 'error',
@@ -73,12 +79,14 @@ if($_POST['operacao'] == 'update'){
     }else{
 
         try{
-            $sql = "UPDATE ALUNO SET NOME = ?, NASCIMENTO = ?, EMAIL = ? WHERE RA = ?";
+            $sql = "UPDATE ALUNO SET NOME = ?, SERIE = ?, NASCIMENTO = ?, EMAIL = ?, TELEFONE = ? WHERE RA = ?";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
             $stmt -> execute([ //executa sql
                 $_POST['nome'],
+                $_POST['serie'],
                 $_POST['nascimento'],
                 $_POST['email'],
+                $_POST['telefone']
                 $_POST['ra']
             ]);
             $dados = [
@@ -128,28 +136,6 @@ if($_POST['operacao'] == 'delete'){
 
 
 echo json_encode($dados);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
