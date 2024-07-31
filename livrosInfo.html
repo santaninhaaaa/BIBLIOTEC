@@ -15,6 +15,7 @@
     <script src="frontend/vendor/sweetAlert/dist/sweetalert2.js" defer></script>
 
     <script src="frontend/screens/controllers/controllerAluno.js" defer></script>
+    <script src="frontend/screens/controllers/controllerLivro.js" defer></script>
 </head>
 <body>
 
@@ -36,13 +37,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link text-white btn-new">
+          <a href="#" class="nav-link text-white btn-new-User">
             <i class="fa-solid fa-user m-1"></i>
             <span class="d-none d-sm-inline">Cadastrar Usuário</span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link text-white">
+          <a href="" class="nav-link text-white btn-new-Livro">
             <i class="fa-solid fa-book m-1"></i>
             <span class="d-none d-sm-inline">Cadastrar Livro</span>
           </a>
@@ -139,7 +140,7 @@
 
 
 <!--FORULARIO - MODAL-->
-<div id="modal-aluno" class="modal fade" tabindex="-1" aria-labelledby="my-modal-title" aria-hidden="true" data-bs-backdrop="static">
+<div id="modal-livro" class="modal fade" tabindex="-1" aria-labelledby="my-modal-title" aria-hidden="true" data-bs-backdrop="static">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -147,22 +148,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="form-aluno">
+        <form id="form-livro">
           <div class="mb-3">
-            <label for="ra" class="form-label">RA</label>
-            <input type="number" name="ra" id="ra" class="form-control">
+            <label for="ra" class="form-label">Tombo</label>
+            <input type="number" name="tombo" id="tombo" class="form-control">
           </div>
           <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
             <input type="text" name="nome" id="nome" class="form-control">
           </div>
           <div class="mb-3">
-            <label for="nascimento" class="form-label">Nascimento</label>
-            <input type="date" name="nascimento" id="nascimento" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">E-mail</label>
-            <input type="email" name="email" id="email" class="form-control">
+            <label for="nascimento" class="form-label">Resumo</label>
+            <input type="text" name="resumo" id="resumo" class="form-control">
           </div>
         </form>
       </div>

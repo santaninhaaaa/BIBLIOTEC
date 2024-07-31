@@ -3,12 +3,12 @@ $(document).ready(function () {
   const url = "backend/model/livroModel.php";
 
   // criar funcionalidade pra abrir modal de novo registor
-  $(".btn-new").click(function (e) {
+  $(".btn-new-Livro").click(function (e) {
     e.preventDefault();
     //alterando o cabeçalho o modal
     $(".modal-title").empty().append("Cadastro de novo livro");
     //abrindo modal
-    $("#modal-aluno").modal("show");
+    $("#modal-livro").modal("show");
     //inclui propriedade data no botão de salvar
     $(".btn-save").attr("data-operation", "create");
   });
