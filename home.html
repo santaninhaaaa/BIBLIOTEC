@@ -15,7 +15,7 @@
     <script src="frontend/vendor/sweetAlert/dist/sweetalert2.js" defer></script>
 
     <script src="frontend/screens/controllers/controllerAluno.js" defer></script>
-    <script src="frontend/screens/controllers/controllerAddLivro.js" defer></script>
+    <script src="frontend/screens/controllers/controllerLivro.js" defer></script>
 </head>
 <body>
 
@@ -37,7 +37,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link text-white btn-new-User">
+          <a href="#" class="nav-link text-white btn-new-User" data-bs-toggle="modal" data-bs-target="#modal-aluno">
             <i class="fa-solid fa-user m-1"></i>
             <span class="d-none d-sm-inline">Cadastrar Usuário</span>
           </a>
@@ -78,7 +78,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link text-white">
+          <a href="livrosInfo.html" class="nav-link text-white">
             <i class="fa-solid fa-book m-1"></i>
             <span class="d-none d-sm-inline">Verificar livros</span>
           </a>
@@ -101,113 +101,52 @@
         
     </div>
     
-    <!--TABELA-->
+    <!--TABELA - ideia da tela ser um bem vindo e dps quando tu clica em status aparece essa tabela-->
+    <div id="table-container">
 
-    <div class="col">
-      <div class="container">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col" class="text-center">RM</th>
-                  <th scope="col" class="text-center">Nome</th>
-                  <th scope="col" class="text-center">Série</th>
-                  <th scope="col" class="text-center">Livro</th>
-                  <th scope="col" class="text-center">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="text-center">22198</td>
-                  <td class="text-center">Vinícius Oliveira Santana</td>
-                  <td class="text-center">3º DS</td>
-                  <td class="text-center">Omori - Mangá</td>
-                  <td class="text-center">
-                    <button class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
-                    <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+      <div class="col">
+        <div class="container">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col" class="text-center">RM</th>
+                    <th scope="col" class="text-center">Nome</th>
+                    <th scope="col" class="text-center">Série</th>
+                    <th scope="col" class="text-center">Livro</th>
+                    <th scope="col" class="text-center">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">RM do aluno</td>
+                    <td class="text-center">Nome do aluno</td>
+                    <td class="text-center">Série do aluno</td>
+                    <td class="text-center">Livro que o aluno pegou</td>
+                    <td class="text-center">
+                      <button class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
+                      <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                      <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
+      
     </div>
+    
     
 
   </div>
 </div>
 
+<!--MODAIS-->
 
-<!--FORULARIO ALUNO - MODAL-->
-<div id="modal-aluno" class="modal fade" tabindex="-1" aria-labelledby="my-modal-title" aria-hidden="true" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="my-modal-title">Title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="form-aluno">
-          <div class="mb-3">
-            <label for="ra" class="form-label">RA</label>
-            <input type="number" name="ra" id="ra" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="nome" class="form-label">Nome</label>
-            <input type="text" name="nome" id="nome" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="nascimento" class="form-label">Nascimento</label>
-            <input type="date" name="nascimento" id="nascimento" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">E-mail</label>
-            <input type="email" name="email" id="email" class="form-control">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary w-100 btn-save">Salvar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--FORULARIO LIVRO - MODAL-->
-<div id="modal-livro" class="modal fade" tabindex="-1" aria-labelledby="my-modal-title" aria-hidden="true" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="my-modal-title">Title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="form-livro">
-          <div class="mb-3">
-            <label for="ra" class="form-label">Tombo</label>
-            <input type="number" name="tombo" id="tombo" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="nome" class="form-label">Nome</label>
-            <input type="text" name="nome" id="nome" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="nascimento" class="form-label">Resumo</label>
-            <input type="text" name="resumo" id="resumo" class="form-control">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary w-100 btn-save">Salvar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+<div id="modal-container"></div>
 
 
 </body>

@@ -5,12 +5,14 @@ $(document).ready(function () {
   // criar funcionalidade pra abrir modal de novo registor
   $(".btn-new-User").click(function (e) {
     e.preventDefault();
-    //alterando o cabeçalho o modal
-    $(".modal-title").empty().append("Cadastro de novo usuário");
     //abrindo modal
-    $("#modal-aluno").modal("show");
-    //inclui propriedade data no botão de salvar
-    $(".btn-save").attr("data-operation", "create");
+    $("#modal-container").load('frontend/screens/views/controllerAluno.html', function(){
+      $('#modal-aluno').modal('show');
+      //alterando o cabeçalho o modal
+      $(".modal-title").empty().append("Cadastro de novo usuário");
+      //inclui propriedade data no botão de salvar
+      $(".btn-save").attr("data-operation", "create");
+    });
   });
 
   //criando funcionalidade para preencher a tabela com as info do BD

@@ -5,12 +5,14 @@ $(document).ready(function () {
   // criar funcionalidade pra abrir modal de novo registor
   $(".btn-new-Livro").click(function (e) {
     e.preventDefault();
-    //alterando o cabeçalho o modal
-    $(".modal-title").empty().append("Cadastro de novo livro");
     //abrindo modal
-    $("#modal-livro").modal("show");
-    //inclui propriedade data no botão de salvar
-    $(".btn-save").attr("data-operation", "create");
+    $("#modal-container").load('frontend/screens/views/controllerLivro.html', function(){
+      $('#modal-livro').modal('show');
+      //alterando o cabeçalho o modal
+      $(".modal-title").empty().append("Cadastro de novo livro");
+      //inclui propriedade data no botão de salvar
+      $(".btn-save").attr("data-operation", "create");
+    });
   });
 
   //criando funcionalidade para preencher a tabela com as info do BD
