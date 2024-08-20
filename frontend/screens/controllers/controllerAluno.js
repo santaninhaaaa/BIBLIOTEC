@@ -30,7 +30,6 @@ $(document).ready(function () {
                     <tr>
                         <td class="text-center">${dado.RA}</td>
                         <td class="text-center">${dado.NOME}</td>
-                        <td class="text-center">${dado.NASCIMENTO}</td>
                         <td class="text-center">${dado.EMAIL}</td>
                         <td class="text-center">
                             <button id="${dado.RA}" class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>

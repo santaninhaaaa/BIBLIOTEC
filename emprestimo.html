@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - BiblioTec</title>
+    <title>Empréstimo - BiblioTec</title>
     <!--CSS - ESTILOS-->
     <link rel="stylesheet" href="frontend/vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="frontend/vendor/fontAwesome/css/all.css">
@@ -13,9 +13,6 @@
     <script src="frontend/vendor/scripts/jquery-3.7.1.js" defer></script>
     <script src="frontend/vendor/bootstrap/js/bootstrap.bundle.js" defer></script>
     <script src="frontend/vendor/sweetAlert/dist/sweetalert2.js" defer></script>
-
-    <script src="frontend/screens/controllers/controllerAluno.js" defer></script>
-    <script src="frontend/screens/controllers/controllerLivro.js" defer></script>
 </head>
 <body>
 
@@ -32,38 +29,20 @@
       <hr class="text-white"></hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="" class="nav-link active text-white">
+          <a href="" class="nav-link text-white">
             <span class="d-none d-sm-inline">Status</span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link text-white btn-new-User" data-bs-toggle="modal" data-bs-target="#modal-aluno">
+          <a href="alunosInfo.html" class="nav-link text-white">
             <i class="fa-solid fa-user m-1"></i>
-            <span class="d-none d-sm-inline">Cadastrar Usuário</span>
+            <span class="d-none d-sm-inline">Verificar Usuário</span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link text-white btn-new-Livro">
+          <a href="livrosInfo.html" class="nav-link text-white">
             <i class="fa-solid fa-book m-1"></i>
-            <span class="d-none d-sm-inline">Cadastrar Livro</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link text-white">
-            <i class="fa-solid fa-hand-holding m-1"></i>
-            <span class="d-none d-sm-inline">Empréstimo</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link text-white">
-            <i class="fa-solid fa-reply m-1"></i>
-            <span class="d-none d-sm-inline">Devolução</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link text-white">
-            <i class="fa-solid fa-receipt m-1"></i>
-            <span class="d-none d-sm-inline">Relatório</span>
+            <span class="d-none d-sm-inline">Verificar Livro</span>
           </a>
         </li>
       </ul>
@@ -72,15 +51,21 @@
 
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="alunosInfo.html" class="nav-link text-white">
-            <i class="fa-solid fa-user m-1"></i>
-            <span class="d-none d-sm-inline">Verificar alunos</span>
+          <a href="#" class="nav-link text-white active">
+            <i class="fa-solid fa-hand-holding m-1"></i>
+            <span class="d-none d-sm-inline">Empréstimo</span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="livrosInfo.html" class="nav-link text-white">
-            <i class="fa-solid fa-book m-1"></i>
-            <span class="d-none d-sm-inline">Verificar livros</span>
+          <a href="#" class="nav-link text-white">
+            <i class="fa-solid fa-reply m-1"></i>
+            <span class="d-none d-sm-inline">Devolução</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white">
+            <i class="fa-solid fa-receipt m-1"></i>
+            <span class="d-none d-sm-inline">Relatório</span>
           </a>
         </li>
       </ul>
@@ -102,42 +87,46 @@
     </div>
     
     <!--TABELA - ideia da tela ser um bem vindo e dps quando tu clica em status aparece essa tabela-->
-    <div id="table-container">
+    
 
       <div class="col">
         <div class="container">
           <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col" class="text-center">RM</th>
-                    <th scope="col" class="text-center">Nome</th>
-                    <th scope="col" class="text-center">Série</th>
-                    <th scope="col" class="text-center">Livro</th>
-                    <th scope="col" class="text-center">Ações</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="text-center">RM do aluno</td>
-                    <td class="text-center">Nome do aluno</td>
-                    <td class="text-center">Série do aluno</td>
-                    <td class="text-center">Livro que o aluno pegou</td>
-                    <td class="text-center">
-                      <button class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
-                      <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                      <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i></button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div id="table-container">
+
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col" class="text-center">RM</th>
+                      <th scope="col" class="text-center">Nome</th>
+                      <th scope="col" class="text-center">Série</th>
+                      <th scope="col" class="text-center">Livro</th>
+                      <th scope="col" class="text-center">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-center">RM do aluno</td>
+                      <td class="text-center">Nome do aluno</td>
+                      <td class="text-center">Série do aluno</td>
+                      <td class="text-center">Livro que o aluno pegou</td>
+                      <td class="text-center">
+                        <button class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
+                        <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
             </div>
           </div>
         </div>
       </div>
       
-    </div>
+   
     
     
 
