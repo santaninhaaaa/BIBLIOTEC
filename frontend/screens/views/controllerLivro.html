@@ -1,29 +1,45 @@
-<div id="modal-livro" class="modal fade" tabindex="-1" aria-labelledby="my-modal-title" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="my-modal-title">LIVRO</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="form-livro">
-            <div class="mb-3">
-              <label for="ra" class="form-label">Tombo</label>
-              <input type="number" name="tombo" id="tombo" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label for="nome" class="form-label">Nome</label>
-              <input type="text" name="nome" id="nome" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label for="nascimento" class="form-label">Resumo</label>
-              <input type="text" name="resumo" id="resumo" class="form-control">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary w-100 btn-save">Salvar</button>
-        </div>
+<div
+  id="modal-livro"
+  class="modal fade"
+  tabindex="-1"
+  aria-labelledby="my-modal-title"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="my-modal-title">LIVRO</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-livro">
+          <div class="mb-3">
+            <label for="ra" class="form-label">Tombo</label>
+            <input type="number" name="tombo" id="tombo" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" name="nome" id="nome" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label for="nascimento" class="form-label">Resumo</label>
+            <input type="text" name="resumo" id="resumo" class="form-control" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary w-100 btn-save">
+          Salvar
+        </button>
       </div>
     </div>
   </div>
+</div>
+
+<script src="../controllers/controllerLivro.js"></script>

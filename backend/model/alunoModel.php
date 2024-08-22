@@ -11,7 +11,6 @@ if($_POST['operacao'] == 'create'){
 
     if(empty($_POST['ra']) || 
        empty($_POST['nome']) ||
-       empty($_POST['serie']) ||
        empty($_POST['email']) ||
        empty($_POST['telefone'])){
 
@@ -22,12 +21,11 @@ if($_POST['operacao'] == 'create'){
     }else{
 
         try{
-            $sql = "INSERT INTO ALUNO (RA, NOME, SERIE, EMAIL, TELEFONE) VALUES (?,?,?,?,?,?)";
+            $sql = "INSERT INTO ALUNO (RA, NOME, EMAIL, TELEFONE) VALUES (?,?,?,?,?,?)";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
             $stmt -> execute([ //executa sql
                 $_POST['ra'],
                 $_POST['nome'],
-                $_POST['serie'],
                 $_POST['email'],
                 $_POST['telefone']
             ]);
@@ -65,7 +63,6 @@ if($_POST['operacao'] == 'read'){
 if($_POST['operacao'] == 'update'){
 
     if(empty($_POST['nome']) ||
-       empty($_POST['serie']) ||
        empty($_POST['email']) ||
        empty($_POST['telefone'])){
 
@@ -76,13 +73,12 @@ if($_POST['operacao'] == 'update'){
     }else{
 
         try{
-            $sql = "UPDATE ALUNO SET NOME = ?, SERIE = ?, EMAIL = ?, TELEFONE = ? WHERE RA = ?";
+            $sql = "UPDATE ALUNO SET NOME = ?, EMAIL = ?, TELEFONE = ? WHERE RA = ?";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
             $stmt -> execute([ //executa sql
                 $_POST['nome'],
-                $_POST['serie'],
                 $_POST['email'],
-                $_POST['telefone']
+                $_POST['telefone'],
                 $_POST['ra']
             ]);
             $dados = [

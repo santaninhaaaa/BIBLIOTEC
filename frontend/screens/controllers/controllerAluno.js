@@ -7,12 +7,13 @@ $(document).ready(function () {
     e.preventDefault();
     //abrindo modal
     $("#modal-container").load('frontend/screens/views/controllerAluno.html', function(){
-      $('#modal-aluno').modal('show');
-      //alterando o cabeçalho o modal
-      $(".modal-title").empty().append("Cadastro de novo usuário");
-      //inclui propriedade data no botão de salvar
-      $(".btn-save").attr("data-operation", "create");
-    });
+        $('#modal-aluno').modal('show');
+        //alterando o cabeçalho o modal
+        $(".modal-title").empty().append("Cadastro de novo usuário");
+        //inclui propriedade data no botão de salvar
+        $(".btn-save").attr("data-operation", "create");
+      }
+    );
   });
 
   //criando funcionalidade para preencher a tabela com as info do BD
@@ -31,6 +32,7 @@ $(document).ready(function () {
                         <td class="text-center">${dado.RA}</td>
                         <td class="text-center">${dado.NOME}</td>
                         <td class="text-center">${dado.EMAIL}</td>
+                        <td class="text-center">${dado.TELEFONE}</td>
                         <td class="text-center">
                             <button id="${dado.RA}" class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
                             <button id="${dado.RA}" class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
