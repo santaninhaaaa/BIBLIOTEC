@@ -10,7 +10,7 @@ try{
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $return = array(
         'type' => 'success',
-        'message' => 'Conexão realizada com sucesso!'
+        'message' => 'A conexão com o banco de dados ' . $dbname . ', foi realizado com sucesso!'
     );
 } catch (PDOException $e) {
     $return = array(
@@ -18,4 +18,4 @@ try{
         'message' => 'Erro: '.$e->getMessage()
     );
 }
-// echo json_encode($return);
+echo json_encode($return);

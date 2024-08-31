@@ -10,9 +10,11 @@ include ('../connection/connection.php');
 if($_POST['operacao'] == 'create'){
 
     if(empty($_POST['ra']) || 
-       empty($_POST['nome']) ||
+       empty($_POST['nome']) || 
+       empty($_POST['serie']) ||
        empty($_POST['email']) ||
-       empty($_POST['telefone'])){
+       empty($_POST['telefone']) ||
+       empty($_POST['adm_id'])){
 
         $dados = [
             'type' => 'error',
@@ -21,17 +23,19 @@ if($_POST['operacao'] == 'create'){
     }else{
 
         try{
-            $sql = "INSERT INTO ALUNO (RA, NOME, EMAIL, TELEFONE) VALUES (?,?,?,?,?,?)";
+            $sql = "INSERT INTO ALUNO (RA, NOME, SERIE, EMAIL, TELEFONE, ADM_ID) VALUES (?,?,?,?,?,?)";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
             $stmt -> execute([ //executa sql
                 $_POST['ra'],
                 $_POST['nome'],
+                $_POST['serie'],
                 $_POST['email'],
-                $_POST['telefone']
+                $_POST['telefone'],
+                $_POST['adm_id']
             ]);
             $dados = [
                 'type' => 'success',
-                'message' => 'Cadastro do aluno feito com sucesso'
+                'message' => 'Cadastro do aluno salvo com sucesso'
             ];
         }catch(PDOException $e){
             $dados = [
@@ -62,9 +66,12 @@ if($_POST['operacao'] == 'read'){
 
 if($_POST['operacao'] == 'update'){
 
-    if(empty($_POST['nome']) ||
+    if(empty($_POST['nome']) || 
+       empty($_POST['serie']) ||
        empty($_POST['email']) ||
-       empty($_POST['telefone'])){
+       empty($_POST['telefone']) ||
+       empty($_POST['adm_id']) ||
+       empty($_POST['ra'])){
 
         $dados = [
             'type' => 'error',
@@ -73,17 +80,19 @@ if($_POST['operacao'] == 'update'){
     }else{
 
         try{
-            $sql = "UPDATE ALUNO SET NOME = ?, EMAIL = ?, TELEFONE = ? WHERE RA = ?";
+            $sql = "UPDATE ALUNO SET NOME = ?, SERIE = ?, EMAIL = ?, TELEFONE = ?, ADM_ID WHERE RA = ?";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
             $stmt -> execute([ //executa sql
                 $_POST['nome'],
+                $_POST['serie'],
                 $_POST['email'],
                 $_POST['telefone'],
-                $_POST['ra']
+                $_POST['adm_id'],
+                $_POST['ra'],
             ]);
             $dados = [
                 'type' => 'success',
-                'message' => 'Cadastro do aluno alterado com sucesso'
+                'message' => 'Registro do aluno atualizado com sucesso'
             ];
         }catch(PDOException $e){
             $dados = [
@@ -125,10 +134,23 @@ if($_POST['operacao'] == 'delete'){
     }
 } 
 
+if($_POST['operacao'] == 'view'){
+    try{
 
+        $sql = "SELECT * FROM ALUNO WHERE RA = ".$_POST['RA']."";
+        $resultado = $pdo->query($sql); //recebe a query dos valores do banco
+        while($row = $resultado->fetch(PDO::FETCH_ASSOC)){ //while pra varrer o banco linha por linha usando o FETCH e o row vai ler linha por linha do banco
+            $dados[] = array_map(null, $row); //array pra mapear os dados, recebe 2 parametros
+        }
+
+    }catch(PDOException $e){
+        $dados = [
+            'type' => 'error',
+            'message' => 'Erro de consulta: ' . $e -> getMessage()
+        ];
+    }
+}
 
 echo json_encode($dados);
-
-
 
 ?>

@@ -1,3 +1,43 @@
+<div class="col">
+  <div class="container">
+    <div class="card-body">
+      <h1>LIVROS</h1>
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" class="text-center">Tombo</th>
+              <th scope="col" class="text-center">Nome</th>
+              <th scope="col" class="text-center">Resumo</th>
+              <th scope="col" class="text-center">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center">Tombo do livro</td>
+              <td class="text-center">Nome do livro</td>
+              <td class="text-center">Resumo do livro</td>
+              <td class="text-center">
+                <button class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
+                <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="button" class="btn btn-primary btn-lg btn-new-Livro" data-bs-toggle="modal" data-bs-target="#modal-livro">Adicionar livro</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
 <div
   id="modal-livro"
   class="modal fade"
@@ -42,4 +82,4 @@
   </div>
 </div>
 
-<script src="../controllers/controllerLivro.js"></script>
+<script src="frontend/screens/controllers/controllerLivro.js"></script>

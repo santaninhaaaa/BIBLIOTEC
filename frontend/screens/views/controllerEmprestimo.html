@@ -1,3 +1,46 @@
+<div class="col">
+  <div class="container">
+    <div class="card-body">
+      <h1>EMPRÉSTIMO</h1>
+      <div id="table-container">
+
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" class="text-center">RM</th>
+                <th scope="col" class="text-center">Nome</th>
+                <th scope="col" class="text-center">Série</th>
+                <th scope="col" class="text-center">Livro</th>
+                <th scope="col" class="text-center">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">RM do aluno</td>
+                <td class="text-center">Nome do aluno</td>
+                <td class="text-center">Série do aluno</td>
+                <td class="text-center">Livro que o aluno pegou</td>
+                <td class="text-center">
+                  <button class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
+                  <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                  <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button type="button" class="btn btn-primary btn-lg btn-new-Livro" data-bs-toggle="modal" data-bs-target="#modal-livro">Adicionar empréstimo</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div id="modal-emprestimo" class="modal fade" tabindex="-1" aria-labelledby="my-modal-title" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">

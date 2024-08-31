@@ -1,35 +1,86 @@
+<div class= "col">
+  <div class="container">
+    <div class="card-body">
+      <h4 class="text-dark">Gerenciamento de alunos</h4>
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" class="text-center">RA</th>
+              <th scope="col" class="text-center">Nome</th>
+              <th scope="col" class="text-center">Série</th>
+              <th scope="col" class="text-center">Email</th>
+              <th scope="col" class="text-center">Telefone</th>
+              <th scope="col" class="text-center">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center">RA do aluno</td>
+              <td class="text-center">Nome do aluno</td>
+              <td class="text-center">Série do aluno</td>
+              <td class="text-center">Email do aluno</td>
+              <td class="text-center">Telefone do aluno</td>
+              <td class="text-center">
+                <button class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
+                <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-dark btn-lg btn-new"><i class="fa-solid fa-circle-plus"></i> Adicionar aluno</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <div id="modal-aluno" class="modal fade" tabindex="-1" aria-labelledby="my-modal-title" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="my-modal-title">ALUNO</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="form-aluno">
-            <div class="mb-3">
-              <label for="ra" class="form-label">RA</label>
-              <input type="number" name="ra" id="ra" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label for="nome" class="form-label">Nome</label>
-              <input type="text" name="nome" id="nome" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">E-mail</label>
-              <input type="email" name="email" id="email" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Telefone</label>
-              <input type="number" name="telefone" id="telefone" class="form-control">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary w-100 btn-save">Salvar</button>
-        </div>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="my-modal-title">ALUNO TÍTULO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-aluno">
+          
+          <div class="mb-3 form-group">
+            <label>RA</label>
+            <input type="number" name="ra" id="ra" class="form-control">
+          </div>
+          <div class="mb-3 form-group">
+            <label>Nome</label>
+            <input type="text" name="nome" id="nome" class="form-control">
+          </div>
+          <div class="mb-3 form-group">
+            <label>Série</label>
+            <input type="text" name="serie" id="serie" class="form-control">
+          </div>
+          <div class="mb-3 form-group">
+            <label>E-mail</label>
+            <input type="email" name="email" id="email" class="form-control">
+          </div>
+          <div class="mb-3 form-group">
+            <label>Telefone</label>
+            <input type="number" name="telefone" id="telefone" class="form-control">
+          </div>
+          <div class="mb-3 form-group">
+            <label>Administrador</label>
+            <input type="number" name="adm_id" id="adm_id" class="form-control">
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-block btn-save">Salvar</button>
       </div>
     </div>
   </div>
+</div>
 
-<script src="../controllers/controllerAluno.js"></script>
+<script src="frontend/screens/controllers/controllerAluno.js"></script>
