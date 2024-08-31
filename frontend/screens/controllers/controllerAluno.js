@@ -40,7 +40,6 @@ $(document).ready(function(){
                       <td class="text-center">${dado.SERIE}</td>
                       <td class="text-center">${dado.EMAIL}</td>
                       <td class="text-center">${dado.TELEFONE}</td>
-                      <td class="text-center">${dado.ADM_ID}</td>
                       <td class="text-center">
                           <button id="${dado.RA}" class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
                           <button id="${dado.RA}" class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -148,7 +147,7 @@ $(document).ready(function(){
                   text: dados.message
               })
               $('#modal-aluno').modal('hide')
-              location.reload('frontend/screens/views/controllerAluno.html')
+              $('#main').empty().load('frontend/screens/views/controllerAluno.html')
           }
 
       })
