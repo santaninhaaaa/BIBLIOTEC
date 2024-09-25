@@ -5,3 +5,7 @@ body {
 .col {
   align-content: center;
 }
+
+.table-responsive {
+  max-height:500px;
+}

@@ -9,7 +9,8 @@ include ('../connection/connection.php');
 //request mesma função do post e get, mas ele ouve os dois
 if($_POST['operacao'] == 'create'){
 
-    if(empty($_POST['login']) || 
+    if(empty($_POST['nome']) ||
+       empty($_POST['login']) ||
        empty($_POST['senha'])){
 
         $dados = [
@@ -19,9 +20,10 @@ if($_POST['operacao'] == 'create'){
     }else{
 
         try{
-            $sql = "INSERT INTO ADM (LOGIN, SENHA) VALUES (?,?)";
+            $sql = "INSERT INTO ADM (NOME, LOGIN, SENHA) VALUES (?,?,?)";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
             $stmt -> execute([ //executa sql
+                $_POST['nome'],
                 $_POST['login'],
                 $_POST['senha']
             ]);
@@ -58,7 +60,8 @@ if($_POST['operacao'] == 'read'){
 
 if($_POST['operacao'] == 'update'){
 
-    if(empty($_POST['login']) || 
+    if(empty($_POST['nome']) || 
+       empty($_POST['login']) || 
        empty($_POST['senha'])){
 
         $dados = [
@@ -71,6 +74,7 @@ if($_POST['operacao'] == 'update'){
             $sql = "UPDATE ADM SET LOGIN = ?, SENHA = ? WHERE ID = ?";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
             $stmt -> execute([ //executa sql
+                $_POST['nome'],
                 $_POST['login'],
                 $_POST['senha'],
                 $_POST['id']
@@ -119,6 +123,48 @@ if($_POST['operacao'] == 'delete'){
     }
 } 
 
+if($_POST['operacao'] == 'login'){
+    try{
+        $login = isset($_POST['LOGIN']) ? addslashes(trim($_POST['LOGIN'])) : false;
+        $senha = isset($_POST['SENHA']) ? $_POST['SENHA'] : false;
+        if(empty($login) || empty($senha)){
+            $dados = [
+                'type' => 'error',
+                'message' => 'Usuário ou senha não preeenchidos'
+            ];
+        }
+        $sql = $pdo->prepare("SELECT * FROM ADM WHERE LOGIN = '".$_POST['LOGIN']."' AND SENHA = '".$_POST['SENHA']."'");
+        $sql->execute();
+        $total = $sql->rowCount();
+        if($total === 1){
+            $linha = $sql->fetch();
+            session_start();
+            $_SESSION['LOGIN'] = $linha['LOGIN'];
+            $_SESSION['ADM_ID'] = $linha['ID'];
+
+            $dados = [
+                'type' => 'success',
+                'message' => 'Seja bem-vindo(a) '.$_SESSION['LOGIN']
+            ];
+        } else {
+            $dados = [
+                'type' => 'error',
+                'message' => 'Usuário e/ou senha incorretos'
+            ];
+        }
+    } catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+if($_POST['operacao'] == 'logout'){
+    session_start();
+    session_destroy();
+    $dados = [
+        'type' => 'success',
+        'message' => 'Adeus '. $_SESSION['LOGIN']
+    ];
+}
 
 
 echo json_encode($dados);

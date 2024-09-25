@@ -3,6 +3,29 @@ $(document).ready(function(){
   //constante do arquivo
   const url = 'backend/model/livroModel.php'
 
+      //busca de alunos - filtragem
+      const INPUT_BUSCA = document.getElementById('input-busca');
+      const TABLE_LIVRO = document.getElementById('table-livro');
+  
+      INPUT_BUSCA.addEventListener('keyup', () => {
+          let expressao = INPUT_BUSCA.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+  
+          let linhas = TABLE_LIVRO.getElementsByTagName('tr');
+  
+          for (let posicao in linhas){
+              if (true === isNaN(posicao)) {
+                  continue;
+              }
+              let conteudoDaLinha = linhas[posicao].innerHTML.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+  
+              if (true === conteudoDaLinha.includes(expressao)) {
+                  linhas[posicao].style.display = '';
+              } else {
+                  linhas[posicao].style.display = 'none';
+              }
+          }
+      })
+
   // criar funcionalidade pra abrir modal de novo registor
   $('.btn-new').click(function(e){
       e.preventDefault()

@@ -1,7 +1,8 @@
 <div class= "col">
   <div class="container">
     <div class="card-body">
-      <h4 class="text-dark">Gerenciamento de alunos</h4>
+      <h2 class="text-dark mt-5">Gerenciamento de alunos</h2>
+      <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Quem você procura?">
       <div class="table-responsive">
         <table class="table">
           <thead class="thead-dark">
@@ -14,7 +15,7 @@
               <th scope="col" class="text-center">Ações</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="table-aluno">
             <tr>
               <td class="text-center">RA do aluno</td>
               <td class="text-center">Nome do aluno</td>
@@ -32,7 +33,7 @@
       </div>
 
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-dark btn-lg btn-new"><i class="fa-solid fa-circle-plus"></i> Adicionar aluno</button>
+        <button class="btn btn-dark btn-lg btn-new mt-3"><i class="fa-solid fa-circle-plus"></i> Adicionar aluno</button>
       </div>
 
     </div>
@@ -59,7 +60,16 @@
           </div>
           <div class="mb-3 form-group">
             <label>Série</label>
-            <input type="text" name="serie" id="serie" class="form-control">
+            <select name="serie" id="serie" class="form-control">
+              <option value="ds">Desenvolvimento de Sistemas</option>
+              <option value="ling">Linguagens</option>
+              <option value="cont">Contabilidade</option>
+              <option value="rh">Recursos Humanos</option>
+              <option value="enf">Enfermagens</option>
+              <option value="adm">Administração</option>
+              <option value="juri">Jurídico</option>
+              <option value="quim">Química</option>
+            </select>
           </div>
           <div class="mb-3 form-group">
             <label>E-mail</label>
@@ -67,12 +77,13 @@
           </div>
           <div class="mb-3 form-group">
             <label>Telefone</label>
-            <input type="number" name="telefone" id="telefone" class="form-control">
+            <input type="text" name="telefone" id="telefone" class="form-control phone_with_ddd">
           </div>
           <div class="mb-3 form-group">
-            <label>Administrador</label>
+            <label>ID do Administrador</label>
             <input type="number" name="adm_id" id="adm_id" class="form-control">
           </div>
+            
           
         </form>
       </div>

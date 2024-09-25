@@ -1,7 +1,8 @@
 <div class= "col">
   <div class="container">
     <div class="card-body">
-      <h4 class="text-dark">Gerenciamento de Livros</h4>
+      <h2 class="text-dark mt-5">Gerenciamento de livros</h2>
+      <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Que livro você procura?">
       <div class="table-responsive">
         <table class="table">
           <thead class="thead-dark">
@@ -11,7 +12,7 @@
               <th scope="col" class="text-center">Ações</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="table-livro">
             <tr>
               <td class="text-center">Tombo do livro</td>
               <td class="text-center">Nome do livro</td>
@@ -26,7 +27,7 @@
       </div>
 
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-dark btn-lg btn-new"><i class="fa-solid fa-circle-plus"></i> Adicionar livro</button>
+        <button class="btn btn-dark btn-lg btn-new mt-3"><i class="fa-solid fa-circle-plus"></i> Adicionar livro</button>
       </div>
 
     </div>

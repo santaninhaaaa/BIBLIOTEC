@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - BiblioTec</title>
-    <link
-      rel="stylesheet"
-      href="frontend/vendor/bootstrap/css/bootstrap.min.css"
-    />
+    <!--CSS - STYLESHEETS-->
+    <link rel="stylesheet" href="frontend/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="frontend/vendor/fontAwesome/css/all.css">
+    <link rel="stylesheet" href="frontend/vendor/sweetAlert/dist/sweetalert2.css">
+
     <link rel="stylesheet" href="frontend/assets/css/style_index.css" />
+    <!--JS - SCRIPTS-->
+    <script src="frontend/vendor/scripts/jquery-3.7.1.js" defer></script>
+    <script src="frontend/vendor/bootstrap/js/bootstrap.js" defer></script>
+    <script src="frontend/vendor/sweetAlert/dist/sweetalert2.all.js" defer></script>
+
+    <script src="frontend/screens/controllers/controllerLogin.js" defer></script>
   </head>
   <body>
+
     <div class="container-fluid">
-      <form class="mx-auto">
+      <form class="mx-auto" id="form-login">
         <h4 class="text-center">BiblioTec</h4>
         <div class="mb-3 mt-5">
-          <label for="exampleInputUser" class="form-label">Usuário</label>
-          <input
-            type="text"
-            class="form-control"
-            id="exampleInputUser"
-            aria-describedby="userHelp"
-          />
+          <label for="exampleInputUser" class="form-label">Login</label>
+          <input type="text" class="form-control" id="LOGIN" name="LOGIN" aria-describedby="userHelp"/>
         </div>
 
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Senha</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-          />
-          <div id="emailHelp" class="form-text mt-3">Esqueceu a senha?</div>
+          <input type="password" class="form-control" id="SENHA" name="SENHA"/>
+          <div id="emailHelp" class="form-text mt-3"><a href="">Esqueceu a senha?</a></div>
+          <div id="emailHelp" class="form-text mt-3"><a href="">Não possui conta? Cadastre-se aqui.</a></div>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-4">Logar</button>
+        <button type="submit" class="btn btn-primary btn-login mt-4">Logar</button>
       </form>
     </div>
+
   </body>
 </html>
