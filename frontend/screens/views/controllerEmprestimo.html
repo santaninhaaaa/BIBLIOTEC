@@ -1,14 +1,13 @@
 <div class="col">
   <div class="container">
     <div class="card-body">
-      <h1>EMPRÉSTIMO</h1>
-      <div id="table-container">
-
-        <div class="table-responsive">
+      <h2 class="text-dark mt-5">Gerenciamento de empréstimos</h2>
+      <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Que empréstimo você procura?">
+        <div class="table-responsive bg-white rounded-4">
           <table class="table">
-            <thead class="thead-dark">
+            <thead class="thead-dark sticky-top">
               <tr>
-                <th scope="col" class="text-center">RM</th>
+                <th scope="col" class="text-center">RA</th>
                 <th scope="col" class="text-center">Nome</th>
                 <th scope="col" class="text-center">Série</th>
                 <th scope="col" class="text-center">Livro</th>
@@ -17,14 +16,13 @@
             </thead>
             <tbody>
               <tr>
-                <td class="text-center">RM do aluno</td>
+                <td class="text-center">RA do aluno</td>
                 <td class="text-center">Nome do aluno</td>
                 <td class="text-center">Série do aluno</td>
                 <td class="text-center">Livro que o aluno pegou</td>
                 <td class="text-center">
                   <button class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
                   <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                  <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i></button>
                 </td>
               </tr>
             </tbody>
@@ -32,11 +30,8 @@
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button class="btn btn-dark btn-lg btn-new"><i class="fa-solid fa-circle-plus"></i> Realizar empréstimo</button>
+          <button class="btn btn-dark btn-lg mt-3 btn-new"><i class="fa-solid fa-plus"></i> Realizar empréstimo</button>
         </div>
-  
-
-      </div>
     </div>
   </div>
 </div>
@@ -53,19 +48,11 @@
           <form id="form-aluno">
             <div class="mb-3">
               <label for="ra" class="form-label">RA</label>
-              <input type="number" name="ra" id="ra" class="form-control">
+              <input type="number" name="ra" id="ra" class="form-control border border-secondary">
             </div>
             <div class="mb-3">
               <label for="nome" class="form-label">Tombo</label>
-              <input type="text" name="nome" id="nome" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label for="nascimento" class="form-label">Nascimento</label>
-              <input type="date" name="nascimento" id="nascimento" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">E-mail</label>
-              <input type="email" name="email" id="email" class="form-control">
+              <input type="text" name="nome" id="nome" class="form-control border border-secondary">
             </div>
           </form>
         </div>
@@ -76,4 +63,4 @@
     </div>
   </div>
 
-<script src="../controllers/controllerAluno.js"></script>
+<script src="frontend/screens/controllers/controllerEmprestimo.js"></script>

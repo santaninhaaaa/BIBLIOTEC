@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="container">
+            <div class="card-body">
+                <h2 class="text-dark mt-5">Devolução de livros</h2>
+                <div class="col">
+                    <input type="number" id="ra" name="ra" placeholder="Digite o RA" class="form-control mt-3">
+
+                    <button class="btn btn-dark btn-search mt-3"><i class="fa-solid fa-magnifying-glass"></i> Pesquisar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="container">
+            <div class="card-body">
+                <h2 class="text-dark mt-5">Livros que NOME está</h2>
+                <div class="table-responsive bg-white rounded-4">
+                    <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" class="text-center">Situação</th>
+                            <th scope="col" class="text-center">Tombo</th>
+                            <th scope="col" class="text-center">Nome</th>
+                            <th scope="col" class="text-center">Ações</th>
+                        </tr>
+                      </thead>
+                      <tbody id="table-livro">
+                        <tr>
+                            <td class="text-center">Situação do livro</td>
+                            <td class="text-center">Tombo do livro</td>
+                            <td class="text-center">Nome do livro</td>
+                            <td class="text-center">
+                                <button class="btn btn-success btn-renew"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                                <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i></button>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+

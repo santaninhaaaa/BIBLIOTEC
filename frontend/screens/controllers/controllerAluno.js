@@ -60,11 +60,13 @@ $(document).ready(function(){
             $('tbody').empty()
             for(const dado of dados){
 
+                let serieTexto = $(`#serie option[value="${dado.SERIE}"]`).text() //pega o texto e nn o value do select
+
                 $('tbody').append(`
                     <tr>
                         <td class="text-center">${dado.RA}</td>
                         <td class="text-center">${dado.NOME}</td>
-                        <td class="text-center">${dado.SERIE}</td>
+                        <td class="text-center">${serieTexto}</td>
                         <td class="text-center">${dado.EMAIL}</td>
                         <td class="text-center">${dado.TELEFONE}</td>
                         <td class="text-center">

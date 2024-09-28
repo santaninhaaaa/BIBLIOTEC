@@ -3,9 +3,9 @@
     <div class="card-body">
       <h2 class="text-dark mt-5">Gerenciamento de alunos</h2>
       <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Quem você procura?">
-      <div class="table-responsive">
+      <div class="table-responsive bg-white rounded-4">
         <table class="table">
-          <thead class="thead-dark">
+          <thead class="thead-dark sticky-top">
             <tr>
               <th scope="col" class="text-center">RA</th>
               <th scope="col" class="text-center">Nome</th>
@@ -33,7 +33,7 @@
       </div>
 
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-dark btn-lg btn-new mt-3"><i class="fa-solid fa-circle-plus"></i> Adicionar aluno</button>
+        <button class="btn btn-dark btn-lg btn-new mt-3"><i class="fa-solid fa-plus"></i> Adicionar aluno</button>
       </div>
 
     </div>
@@ -50,17 +50,22 @@
       <div class="modal-body">
         <form id="form-aluno">
           
-          <div class="mb-3 form-group">
-            <label>RA</label>
-            <input type="number" name="ra" id="ra" class="form-control">
+          <div class="row g-3">
+            
+            <div class="mb-3 col-md-4 form-group">
+              <label>RA</label>
+              <input type="number" name="ra" id="ra" class="form-control border border-secondary">
+            </div>
+            <div class="mb-3 col form-group">
+              <label>Nome</label>
+              <input type="text" name="nome" id="nome" autocomplete="off" class="form-control border border-secondary">
+            </div>
+
           </div>
-          <div class="mb-3 form-group">
-            <label>Nome</label>
-            <input type="text" name="nome" id="nome" class="form-control">
-          </div>
-          <div class="mb-3 form-group">
+
+          <div class="mb-3 col form-group">
             <label>Série</label>
-            <select name="serie" id="serie" class="form-control">
+            <select name="serie" id="serie" class="form-select border border-secondary">
               <option value="ds">Desenvolvimento de Sistemas</option>
               <option value="ling">Linguagens</option>
               <option value="cont">Contabilidade</option>
@@ -71,17 +76,18 @@
               <option value="quim">Química</option>
             </select>
           </div>
+          
           <div class="mb-3 form-group">
             <label>E-mail</label>
-            <input type="email" name="email" id="email" class="form-control">
+            <input type="email" name="email" id="email" autocomplete="off" class="form-control border border-secondary">
           </div>
           <div class="mb-3 form-group">
             <label>Telefone</label>
-            <input type="text" name="telefone" id="telefone" class="form-control phone_with_ddd">
+            <input type="text" name="telefone" id="telefone" autocomplete="off" class="form-control phone_with_ddd border border-secondary">
           </div>
           <div class="mb-3 form-group">
             <label>ID do Administrador</label>
-            <input type="number" name="adm_id" id="adm_id" class="form-control">
+            <input type="number" name="adm_id" id="adm_id" class="form-control border border-secondary">
           </div>
             
           

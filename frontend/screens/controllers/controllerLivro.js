@@ -26,6 +26,32 @@ $(document).ready(function(){
           }
       })
 
+      var max_fields      = 10; //número máximo de campos
+      var wrapper         = $(".input_fields_wrap"); //área onde os campos serão adicionados
+      var add_button      = $(".btn-add"); //botão de adicionar
+
+      // Ao clicar no botão "Adicionar Caixas"
+      $(add_button).click(function(e) {
+          e.preventDefault();
+          var quantidade = parseInt($("#qtd").val()); // obtém a quantidade informada pelo usuário
+          var current_fields = wrapper.children('div').length; // verifica quantos campos já existem
+
+          if (current_fields + quantidade <= max_fields) { // verifica se a quantidade não ultrapassa o limite máximo
+              for (var i = 0; i < quantidade; i++) {
+                  $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remover</a></div>'); // adiciona caixas
+              }
+          } else {
+              alert("Você não pode adicionar mais de " + max_fields + " campos!");
+          }
+      })
+
+      // Remover campo ao clicar no link "Remover"
+      $(wrapper).on("click", ".remove_field", function(e) {
+          e.preventDefault();
+          $(this).parent('div').remove(); // remove o campo correspondente
+      })
+
+
   // criar funcionalidade pra abrir modal de novo registor
   $('.btn-new').click(function(e){
       e.preventDefault()

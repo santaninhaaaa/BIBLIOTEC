@@ -139,12 +139,13 @@ if($_POST['operacao'] == 'login'){
         if($total === 1){
             $linha = $sql->fetch();
             session_start();
+            $_SESSION['NOME'] = $linha['NOME'];
             $_SESSION['LOGIN'] = $linha['LOGIN'];
             $_SESSION['ADM_ID'] = $linha['ID'];
 
             $dados = [
                 'type' => 'success',
-                'message' => 'Seja bem-vindo(a) '.$_SESSION['LOGIN']
+                'message' => 'Seja bem-vindo(a) '.$_SESSION['NOME']
             ];
         } else {
             $dados = [
@@ -162,35 +163,12 @@ if($_POST['operacao'] == 'logout'){
     session_destroy();
     $dados = [
         'type' => 'success',
-        'message' => 'Adeus '. $_SESSION['LOGIN']
+        'message' => 'Adeus'
     ];
 }
 
 
 echo json_encode($dados);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ?>

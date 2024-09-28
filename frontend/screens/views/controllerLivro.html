@@ -3,9 +3,9 @@
     <div class="card-body">
       <h2 class="text-dark mt-5">Gerenciamento de livros</h2>
       <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Que livro você procura?">
-      <div class="table-responsive">
+      <div class="table-responsive bg-white rounded-4">
         <table class="table">
-          <thead class="thead-dark">
+          <thead class="thead-dark sticky-top">
             <tr>
               <th scope="col" class="text-center">Tombo</th>
               <th scope="col" class="text-center">Nome</th>
@@ -27,7 +27,7 @@
       </div>
 
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-dark btn-lg btn-new mt-3"><i class="fa-solid fa-circle-plus"></i> Adicionar livro</button>
+        <button class="btn btn-dark btn-lg btn-new mt-3"><i class="fa-solid fa-plus"></i> Adicionar livro</button>
       </div>
 
     </div>
@@ -44,15 +44,19 @@
       <div class="modal-body">
         <form id="form-livro">
           
-          <div class="mb-3 form-group">
-            <label>Tombo</label>
-            <input type="number" name="tombo" id="tombo" class="form-control">
+          <div class="row g-3">
+            <div class="mb-3 col-md-3 form-group">
+              <label>Tombo</label>
+              <input type="number" name="tombo" id="tombo" class="form-control border border-secondary">
+            </div>
+  
+            <div class="mb-3 col form-group">
+              <label>Nome</label>
+              <input type="text" name="nome" id="nome" class="form-control border border-secondary">
+            </div>
+
           </div>
-          <div class="mb-3 form-group">
-            <label>Nome</label>
-            <input type="text" name="nome" id="nome" class="form-control">
-          </div>
-          
+
         </form>
       </div>
       <div class="modal-footer">

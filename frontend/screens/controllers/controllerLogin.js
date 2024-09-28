@@ -15,7 +15,7 @@ $(document).ready(function () {
             url: url,
             success: function (dados) {
                 if (dados.type === 'success') {
-                    $(location).attr('href', 'home.html')
+                    $(location).attr('href', 'home.php')
                 } else {
                     Swal.fire({
                         icon: dados.type,

@@ -19,23 +19,26 @@
   </head>
   <body>
 
-    <div class="container-fluid">
-      <form class="mx-auto" id="form-login">
-        <h4 class="text-center">BiblioTec</h4>
-        <div class="mb-3 mt-5">
-          <label for="exampleInputUser" class="form-label">Login</label>
-          <input type="text" class="form-control" id="LOGIN" name="LOGIN" aria-describedby="userHelp"/>
+    <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+        <div class="col-md-4" id="main">
+          <form class="mx-auto rounded-4" id="form-login">
+            <h2 class="text-center">BiblioTec</h4>
+            <div class="mt-5 mb-3">
+              <label class="form-label">Login</label>
+              <input type="text" class="form-control border border-secondary" autocomplete="off" id="LOGIN" name="LOGIN" aria-describedby="userHelp"/>
+            </div>
+    
+            <div class="mb-3">
+                <label class="form-label">Senha</label>
+                <input type="password" class="form-control border border-secondary" id="SENHA" name="SENHA" aria-describedby="userHelp"/>
+  
+                <div id="forgotSenha" class="form-text mt-3"><a href="">Esqueceu a senha?</a></div>
+                <div id="cadastro" class="form-text mt-3"><a href="cadastroAdm.html">Não possui conta? Cadastre-se aqui.</a></div>
+              </div>
+    
+            <button type="submit" class="btn btn-primary btn-login mt-4 col-6 mx-auto d-grid">Logar</button>
+          </form>
         </div>
-
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="SENHA" name="SENHA"/>
-          <div id="emailHelp" class="form-text mt-3"><a href="">Esqueceu a senha?</a></div>
-          <div id="emailHelp" class="form-text mt-3"><a href="">Não possui conta? Cadastre-se aqui.</a></div>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-login mt-4">Logar</button>
-      </form>
     </div>
 
   </body>
