@@ -107,31 +107,31 @@ $(document).ready(function(){
             })
 
             //criando a funcionalidade pra editar os registro no BD
-        $('.btn-edit').click(function(e){
+            $('.btn-edit').click(function(e){
                 e.preventDefault()
                 let dados = `RA=${$(this).attr('ra')}&operacao=view`
-            $.ajax({
-                type: 'POST',
-                dataType: 'JSON',
-                assync: true,
-                data: dados,
-                url: url,
-                success: function(dados){
-                    $('#ra').val(dados[0].RA).attr('disabled', false)
-                    $('#nome').val(dados[0].NOME).attr('disabled', false)
-                    $('#serie').val(dados[0].SERIE).attr('disabled', false)
-                    $('#email').val(dados[0].EMAIL).attr('disabled', false)
-                    $('#telefone').val(dados[0].TELEFONE).attr('disabled', false)
-                    $('#adm_id').val(dados[0].ADM_ID).attr('disabled', false)
-                    $('.btn-save').empty().append('Alterar cadastro').attr('data-operation', 'update').show()
-                    //alterando o cabeçalho o modal
-                    $('.modal-title').empty().append('Edição do aluno')
-                    //abrindo modal
-                    $('#modal-aluno').modal('show')
-                }
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'JSON',
+                    assync: true,
+                    data: dados,
+                    url: url,
+                    success: function(dados){
+                        $('#ra').val(dados[0].RA).attr('disabled', false)
+                        $('#nome').val(dados[0].NOME).attr('disabled', false)
+                        $('#serie').val(dados[0].SERIE).attr('disabled', false)
+                        $('#email').val(dados[0].EMAIL).attr('disabled', false)
+                        $('#telefone').val(dados[0].TELEFONE).attr('disabled', false)
+                        $('#adm_id').val(dados[0].ADM_ID).attr('disabled', false)
+                        $('.btn-save').empty().append('Alterar cadastro').attr('data-operation', 'update').show()
+                        //alterando o cabeçalho o modal
+                        $('.modal-title').empty().append('Edição do aluno')
+                        //abrindo modal
+                        $('#modal-aluno').modal('show')
+                    }
 
+                })
             })
-        })
 
             //criando a funcionalidade pra excluir os registro no BD
             $('.btn-delete').click(function(e){
@@ -181,8 +181,5 @@ $(document).ready(function(){
 
         })
     })
-
-
-
 
 })

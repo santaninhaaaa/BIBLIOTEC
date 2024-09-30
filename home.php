@@ -89,16 +89,15 @@ if(isset($_SESSION['NOME'])) {
         <button class="btn btn-none dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-user m-1"></i> <?php echo htmlspecialchars($nome_usuario);?>
         </button>
-        <ul class="dropdown-menu bg-dark-subtle">
-          <li><a class="dropdown-item" href="#">Configurações</a></li>
-          <li><a class="dropdown-item" href="#">Trocar de Usuário</a></li>
+        <ul class="dropdown-menu bg-dark-subtle text-center">
+          <li><a class="dropdown-item nav-link" href="frontend/screens/views/controllerConfigAdm.php">Configurações</a></li>
           <li><a class="dropdown-item logout" href="#"><i class="fa-solid fa-arrow-right-from-bracket m-1"></i> Sair do Sistema</a></li>
         </ul>
       </div>
           
     </div>
     
-    <!--TABELA - ideia da tela ser um bem vindo e dps quando tu clica em status aparece essa tabela-->
+    <!--TABELAS DE GERENCIAMENTO-->
     <div class="col">
       <div class="container" id="main">
         <div class="row mt-5">

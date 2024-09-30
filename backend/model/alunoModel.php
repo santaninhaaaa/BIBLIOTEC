@@ -66,12 +66,12 @@ if($_POST['operacao'] == 'read'){
 
 if($_POST['operacao'] == 'update'){
 
-    if(empty($_POST['nome']) || 
+    if(empty($_POST['ra']) ||
+       empty($_POST['nome']) || 
        empty($_POST['serie']) ||
        empty($_POST['email']) ||
        empty($_POST['telefone']) ||
-       empty($_POST['adm_id']) ||
-       empty($_POST['ra'])){
+       empty($_POST['adm_id'])){
 
         $dados = [
             'type' => 'error',
@@ -80,7 +80,7 @@ if($_POST['operacao'] == 'update'){
     }else{
 
         try{
-            $sql = "UPDATE ALUNO SET NOME = ?, SERIE = ?, EMAIL = ?, TELEFONE = ?, ADM_ID WHERE RA = ?";
+            $sql = "UPDATE ALUNO SET NOME = ?, SERIE = ?, EMAIL = ?, TELEFONE = ?, ADM_ID = ? WHERE RA = ?";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
             $stmt -> execute([ //executa sql
                 $_POST['nome'],
@@ -88,7 +88,7 @@ if($_POST['operacao'] == 'update'){
                 $_POST['email'],
                 $_POST['telefone'],
                 $_POST['adm_id'],
-                $_POST['ra'],
+                $_POST['ra']
             ]);
             $dados = [
                 'type' => 'success',

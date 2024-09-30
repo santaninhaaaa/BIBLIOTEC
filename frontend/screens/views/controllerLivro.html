@@ -42,22 +42,31 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="form-livro">
-          
-          <div class="row g-3">
-            <div class="mb-3 col-md-3 form-group">
-              <label>Tombo</label>
-              <input type="number" name="tombo" id="tombo" class="form-control border border-secondary">
-            </div>
-  
-            <div class="mb-3 col form-group">
-              <label>Nome</label>
-              <input type="text" name="nome" id="nome" class="form-control border border-secondary">
-            </div>
 
+        <form id="form-livro">
+
+          <div id="show-item">
+            <div class="row g-3">
+            
+              <div class="mt-4 mb-3 col-md-3 form-group">
+                <label>Tombo</label>
+                <input type="number" name="tombo" id="tombo" class="form-control border border-secondary">
+              </div>
+    
+              <div class="mt-4 mb-3 col-md-6 form-group">
+                <label>Nome</label>
+                <input type="text" name="nome" id="nome" class="form-control border border-secondary">
+              </div>
+  
+              <!-- <div class="mb-3 col form-group mt-5">
+                <button class="btn btn-success btn-new-input"><i class="fa-solid fa-plus"></i></button>
+              </div> -->
+  
+            </div>
           </div>
 
         </form>
+
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary btn-block btn-save">Salvar</button>
