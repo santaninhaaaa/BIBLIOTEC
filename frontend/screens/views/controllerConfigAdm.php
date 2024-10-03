@@ -19,6 +19,46 @@ if(isset($_SESSION['NOME']) && isset($_SESSION['LOGIN'])) {
             </div>
         </div>
     </div>
+    <div class="col-md-8">
+        <div class="container">
+            <div class="card-body">
+            <div class="table-responsive bg-white rounded-4">
+                    <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+
+                            <h5 class="p-3 text-center bold">Atividades</h5>
+
+                        </tr>
+                      </thead>
+                      <tbody id="table-anual">
+                        <tr>
+                            <th class="p-3">Empréstimos</td>
+                            <td class="text-center">NUMERO</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3">Renovações</td>
+                            <td class="text-center">NUMERO</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3">Devoluções</td>
+                            <td class="text-center">NUMERO</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3">Cadastros de usuários</td>
+                            <td class="text-center">NUMERO</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3">Cadastros de livros</td>
+                            <td class="text-center">NUMERO</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <div id="modal-adm" class="modal fade" tabindex="-1" aria-labelledby="my-modal-title" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -57,6 +97,5 @@ if(isset($_SESSION['NOME']) && isset($_SESSION['LOGIN'])) {
             </div>
         </div>
     </div>
-</div>
 
 <script src="frontend/screens/controllers/controllerAdm.js"></script>

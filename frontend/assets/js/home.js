@@ -7,5 +7,11 @@ $(document).ready(function () {
     let url = $(this).attr("href");
     // alert(url)
     $("#main").load(url);
+
+    // Forçar a reanimação do CSS
+    $("#main").css("animation", "none");
+    setTimeout(function () {
+      $("#main").css("animation", "");
+    }, 10);  // Pausa curta para permitir que a reanimação ocorra
   });
 });

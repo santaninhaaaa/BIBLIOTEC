@@ -1,8 +1,21 @@
 body{
     background-color: rgb(163, 214, 255);
+    animation: transitionIn 0.75s;
 }
 
 form{
     background-color: aliceblue;
     padding: 50px;
+}
+
+@keyframes transitionIn{
+from {
+    opacity: 0;
+    transform: rotateX(-10deg);
+}
+
+to {
+    opacity: 1;
+    transform: rotateX(0);
+}
 }

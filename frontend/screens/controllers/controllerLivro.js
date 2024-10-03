@@ -89,7 +89,7 @@ $(document).ready(function(){
 
                 $('tbody').append(`
                     <tr>
-                        <td class="text-center">${dado.TOMBO}</td>
+                        <th class="text-center">${dado.TOMBO}</td>
                         <td class="text-center">${dado.NOME}</td>
                         <td class="text-center">
                             <button id="${dado.TOMBO}" class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>

@@ -76,7 +76,7 @@ if(isset($_SESSION['NOME'])) {
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link text-white">
+          <a href="frontend/screens/views/controllerRelatorio.html" class="nav-link text-white">
             <i class="fa-solid fa-receipt m-1"></i>
             <span class="d-none d-sm-inline">Relatório</span>
           </a>
@@ -89,7 +89,7 @@ if(isset($_SESSION['NOME'])) {
         <button class="btn btn-none dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-user m-1"></i> <?php echo htmlspecialchars($nome_usuario);?>
         </button>
-        <ul class="dropdown-menu bg-dark-subtle text-center">
+        <ul class="dropdown-menu bg-light text-center">
           <li><a class="dropdown-item nav-link" href="frontend/screens/views/controllerConfigAdm.php">Configurações</a></li>
           <li><a class="dropdown-item logout" href="#"><i class="fa-solid fa-arrow-right-from-bracket m-1"></i> Sair do Sistema</a></li>
         </ul>
