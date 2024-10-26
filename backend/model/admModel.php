@@ -60,7 +60,8 @@ if($_POST['operacao'] == 'read'){
 
 if($_POST['operacao'] == 'update'){
 
-    if(empty($_POST['nome']) || 
+    if(empty($_POST['id']) ||
+       empty($_POST['nome']) || 
        empty($_POST['login']) || 
        empty($_POST['senha'])){
 
@@ -71,14 +72,29 @@ if($_POST['operacao'] == 'update'){
     }else{
 
         try{
-            $sql = "UPDATE ADM SET LOGIN = ?, SENHA = ? WHERE ID = ?";
+            //se a senha estiver vazia, nn atualiza senha
+            $senhaQuery = !empty($_POST['senha']) ? ", SENHA = ?" : "";
+
+            $sql = "UPDATE ADM SET LOGIN = ?, $senhaQuery WHERE ID = ?";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
-            $stmt -> execute([ //executa sql
-                $_POST['nome'],
-                $_POST['login'],
-                $_POST['senha'],
-                $_POST['id']
-            ]);
+
+            if (!empty($_POST['senha'])){
+
+                $stmt -> execute([ //executa sql
+                    $_POST['nome'],
+                    $_POST['login'],
+                    $_POST['senha'],
+                    $_POST['id']
+                ]);
+            } else {
+
+                $stmt -> execute([ //executa sql
+                    $_POST['nome'],
+                    $_POST['login'],
+                    $_POST['id']
+                ]);
+            }
+           
             $dados = [
                 'type' => 'success',
                 'message' => 'Cadastro do ADM alterado com sucesso'
@@ -167,8 +183,6 @@ if($_POST['operacao'] == 'logout'){
     ];
 }
 
-
 echo json_encode($dados);
-
 
 ?>

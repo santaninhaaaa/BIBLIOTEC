@@ -19,12 +19,17 @@ if($_POST['operacao'] == 'create'){
     }else{
 
         try{
-            $sql = "INSERT INTO LIVRO (TOMBO, NOME) VALUES (?,?)";
-            $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
-            $stmt -> execute([ //executa sql
-                $_POST['tombo'],
-                $_POST['nome']
-            ]);
+            foreach($_POST['tombo'] as $key => $value){
+
+                $sql = "INSERT INTO LIVRO (TOMBO, NOME) VALUES (?,?)";
+                $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
+                $stmt -> execute([ //executa sql
+                    $value,
+                    $_POST['nome'][$key]
+                ]);
+
+            };
+            
             $dados = [
                 'type' => 'success',
                 'message' => 'Livro adicionado com sucesso'
@@ -58,7 +63,8 @@ if($_POST['operacao'] == 'read'){
 
 if($_POST['operacao'] == 'update'){
 
-    if(empty($_POST['nome'])){
+    if(empty($_POST['nome']) ||
+       empty($_POST['tombo'])){
 
         $dados = [
             'type' => 'error',

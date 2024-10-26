@@ -27,37 +27,37 @@ $(document).ready(function(){
     })
 
     //criar funcionalidade para adicionar ou remover inputs quando cadastrar VÁRIOS livros de uma vez
-    // $('.btn-new-input').click(function(e){
-    //     e.preventDefault()
+    $('.btn-new-input').click(function(e){
+        e.preventDefault()
 
-    //     $('#show-item').append(`
-    //         <div class="row g-3">
+        $('#show-item').append(`
+            <div class="row g-3">
         
-    //             <div class="mb-3 col-md-3 form-group">
-    //                 <label>Tombo</label>
-    //                 <input type="number" name="tombo" id="tombo" class="form-control border border-secondary">
-    //             </div>
+                <div class="mb-3 col-md-3 form-group">
+                    <label>Tombo</label>
+                    <input type="number" autocomplete="off" name="tombo[]" id="tombo" class="form-control border border-secondary">
+                </div>
         
-    //             <div class="mb-3 col-md-6 form-group">
-    //                 <label>Nome</label>
-    //                 <input type="text" name="nome" id="nome" class="form-control border border-secondary">
-    //             </div>
+                <div class="mb-3 col-md-6 form-group">
+                    <label>Nome</label>
+                    <input type="text" autocomplete="off" name="nome[]" id="nome" class="form-control border border-secondary">
+                </div>
     
-    //             <div class="mt-4 col">
-    //                 <button class="btn btn-danger btn-delete-input"><i class="fa-solid fa-trash-can"></i></button>
-    //             </div>
+                <div class="mt-4 col">
+                    <button class="btn btn-danger btn-delete-input"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
     
-    //         </div>           
-    //     `)
+            </div>           
+        `)
 
-    //     $('.btn-delete-input').click(function(e){
-    //         e.preventDefault()
+        $('.btn-delete-input').click(function(e){
+            e.preventDefault()
     
-    //         let row_item = $(this).parent().parent()
-    //         $(row_item).remove()
-    //     })
+            let row_item = $(this).parent().parent()
+            $(row_item).remove()
+        })
 
-    // })
+    })
 
 
 
@@ -176,21 +176,9 @@ $(document).ready(function(){
     $('.btn-save').click(function(e){
         e.preventDefault()
 
-        // let tomboArray = []
-        // let nomeArray = []
-        
-        // // Pegar todos os valores dos campos "tombo" e "nome"
-        // $('input[name="tombo[]"]').each(function() {
-        //     tomboArray.push($(this).val());
-        // })
-        
-        // $('input[name="nome[]"]').each(function() {
-        //     nomeArray.push($(this).val());
-        // })
-
-
         let dados = $('#form-livro').serialize()
         dados += `&operacao=${$(this).attr('data-operation')}`
+
         $.ajax({
             type: 'POST',
             dataType: 'JSON',
@@ -209,8 +197,5 @@ $(document).ready(function(){
 
         })
     })
-
-
-
 
 })

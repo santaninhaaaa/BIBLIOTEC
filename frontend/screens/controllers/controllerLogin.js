@@ -29,23 +29,38 @@ $(document).ready(function () {
 
     $('.logout').click(function (e) {
         e.preventDefault()
-        let dados = 'operacao=logout'
-        $.ajax({
-            type: 'POST',
-            dataType: 'JSON',
-            assync: true,
-            data: dados,
-            url: url,
-            success: function (dados) {
-                if (dados.type === 'success') {
-                    $(location).attr('href', 'index.html')
-                } else {
-                    Swal.fire({
-                        icon: dados.type,
-                        title: 'BiblioTec',
-                        text: dados.message
-                    })
-                }
+
+        Swal.fire({
+            title: 'Você tem certeza?',
+            text: "Você será desconectado da sua sessão.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, quero sair',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                let dados = 'operacao=logout'
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'JSON',
+                    assync: true,
+                    data: dados,
+                    url: url,
+                    success: function (dados) {
+                        if (dados.type === 'success') {
+                            $(location).attr('href', 'index.html')
+                        } else {
+                            Swal.fire({
+                                icon: dados.type,
+                                title: 'BiblioTec',
+                                text: dados.message
+                            })
+                        }
+                    }
+                })
             }
         })
     })

@@ -1,19 +1,19 @@
 <?php
-session_start();
+    session_start();
 
-// Verifica se a sessão está ativa e se o login foi realizado
-if(isset($_SESSION['NOME']) && isset($_SESSION['LOGIN'])) {
-    $nome_usuario = $_SESSION['NOME'];
-    $login_usuario = $_SESSION['LOGIN'];
-}
+    // Verifica se a sessão está ativa e se o login foi realizado
+    if(isset($_SESSION['NOME']) && isset($_SESSION['LOGIN'])) {
+        $nome_usuario = $_SESSION['NOME'];
+        $login_usuario = $_SESSION['LOGIN'];
+    }
 ?>
 
 <div class="row">
     <div class="col-md-4">
         <div class="container">
             <div class="card-body">
-                <h2 class="text-dark"><?php echo htmlspecialchars($nome_usuario);?></h2>
-                <h3 class="text-dark"><?php echo htmlspecialchars($login_usuario);?></h3>
+                <h2 class="text-dark text-center"><?php echo htmlspecialchars($nome_usuario);?></h2>
+                <h3 class="text-dark text-center"><?php echo htmlspecialchars($login_usuario);?></h3>
                 <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i> Editar informações</button>
                 <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i> Deletar administrador</button>
             </div>
@@ -22,7 +22,7 @@ if(isset($_SESSION['NOME']) && isset($_SESSION['LOGIN'])) {
     <div class="col-md-8">
         <div class="container">
             <div class="card-body">
-            <div class="table-responsive bg-white rounded-4">
+            <div class="table-responsive shadow bg-white rounded-4">
                     <table class="table">
                       <thead class="thead-dark">
                         <tr>

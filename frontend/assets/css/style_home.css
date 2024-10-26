@@ -25,3 +25,11 @@ body {
     transform: rotateX(0);
   }
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}

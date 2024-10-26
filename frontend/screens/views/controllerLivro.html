@@ -3,7 +3,7 @@
     <div class="card-body">
       <h2 class="text-center text-dark mt-5">Gerenciamento de livros</h2>
       <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Que livro você procura?">
-      <div class="table-responsive bg-white rounded-4">
+      <div class="table-responsive shadow bg-white rounded-4">
         <table class="table">
           <thead class="thead-dark sticky-top">
             <tr>
@@ -50,17 +50,17 @@
             
               <div class="mt-4 mb-3 col-md-3 form-group">
                 <label>Tombo</label>
-                <input type="number" name="tombo" id="tombo" class="form-control border border-secondary">
+                <input type="number" autocomplete="off" name="tombo[]" id="tombo" class="form-control border border-secondary">
               </div>
     
               <div class="mt-4 mb-3 col-md-6 form-group">
                 <label>Nome</label>
-                <input type="text" name="nome" id="nome" class="form-control border border-secondary">
-              </div>
+                <input type="text" autocomplete="off" name="nome[]" id="nome" class="form-control border border-secondary">
+              </div>           
   
-              <!-- <div class="mb-3 col form-group mt-5">
+              <div class="mb-3 col form-group mt-5">
                 <button class="btn btn-success btn-new-input"><i class="fa-solid fa-plus"></i></button>
-              </div> -->
+              </div>
   
             </div>
           </div>
@@ -69,7 +69,7 @@
 
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary btn-block btn-save">Salvar</button>
+        <button type="submit" class="btn btn-primary btn-block btn-save">Salvar</button>
       </div>
     </div>
   </div>

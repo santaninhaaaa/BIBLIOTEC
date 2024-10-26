@@ -1,16 +1,16 @@
 $(document).ready(function(){
 
     //constante do arquivo
-    const url = 'backend/model/alunoModel.php'
+    const url = 'backend/model/usuarioModel.php'
 
     //busca de alunos - filtragem
     const INPUT_BUSCA = document.getElementById('input-busca');
-    const TABLE_ALUNO = document.getElementById('table-aluno');
+    const TABLE_USER = document.getElementById('table-user');
 
     INPUT_BUSCA.addEventListener('keyup', () => {
         let expressao = INPUT_BUSCA.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-        let linhas = TABLE_ALUNO.getElementsByTagName('tr');
+        let linhas = TABLE_USER.getElementsByTagName('tr');
 
         for (let posicao in linhas){
             if (true === isNaN(posicao)) {
@@ -34,9 +34,9 @@ $(document).ready(function(){
     $('.btn-new').click(function(e){
         e.preventDefault()
         //alterando o cabeçalho o modal
-        $('.modal-title').empty().append('Cadastro de novo aluno')
+        $('.modal-title').empty().append('Cadastro de novo usuário')
         //abrindo modal
-        $('#modal-aluno').modal('show')
+        $('#modal-user').modal('show')
         //inclui propriedade data no botão de salvar
         $('.btn-save').empty().append('Salvar').attr('data-operation', 'create').show()
         //removendo os dados que ficam "salvos" quando vc clicar pra criar
@@ -98,9 +98,9 @@ $(document).ready(function(){
                         $('#adm_id').val(dados[0].ADM_ID).attr('disabled', true)
                         $('.btn-save').hide()
                         //alterando o cabeçalho o modal
-                        $('.modal-title').empty().append('Visualização do aluno')
+                        $('.modal-title').empty().append('Visualização do usuário')
                         //abrindo modal
-                        $('#modal-aluno').modal('show')
+                        $('#modal-user').modal('show')
                     }
 
                 })
@@ -125,9 +125,9 @@ $(document).ready(function(){
                         $('#adm_id').val(dados[0].ADM_ID).attr('disabled', false)
                         $('.btn-save').empty().append('Alterar cadastro').attr('data-operation', 'update').show()
                         //alterando o cabeçalho o modal
-                        $('.modal-title').empty().append('Edição do aluno')
+                        $('.modal-title').empty().append('Edição do usuário')
                         //abrindo modal
-                        $('#modal-aluno').modal('show')
+                        $('#modal-user').modal('show')
                     }
 
                 })
@@ -149,7 +149,7 @@ $(document).ready(function(){
                             title: 'BiblioTec',
                             text: dados.message
                         })
-                        $('#main').empty().load('frontend/screens/views/controllerAluno.html')
+                        $('#main').empty().load('frontend/screens/views/controllerUsuario.html')
                     }
 
                 })
@@ -161,7 +161,7 @@ $(document).ready(function(){
     //criando a funcionalidade pra salvar novos registros no BD
     $('.btn-save').click(function(e){
         e.preventDefault()
-        let dados = $('#form-aluno').serialize()
+        let dados = $('#form-user').serialize()
         dados += `&operacao=${$(this).attr('data-operation')}`
         $.ajax({
             type: 'POST',
@@ -175,8 +175,8 @@ $(document).ready(function(){
                     title: 'BiblioTec',
                     text: dados.message
                 })
-                $('#modal-aluno').modal('hide')
-                $('#main').empty().load('frontend/screens/views/controllerAluno.html')
+                $('#modal-user').modal('hide')
+                $('#main').empty().load('frontend/screens/views/controllerUsuario.html')
             }
 
         })

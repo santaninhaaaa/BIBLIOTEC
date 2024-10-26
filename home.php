@@ -47,7 +47,7 @@ if(isset($_SESSION['NOME'])) {
       <hr class="text-white"></hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="frontend/screens/views/controllerAluno.html" class="nav-link text-white">
+          <a href="frontend/screens/views/controllerUsuario.html" class="nav-link text-white">
             <i class="fa-solid fa-user m-1"></i>
             <span class="d-none d-sm-inline">Verificar Usuário</span>
           </a>
@@ -106,6 +106,32 @@ if(isset($_SESSION['NOME'])) {
             <h1 class="text-center text-dark">Bem vindo(a) ao Sistema Gerenciador da Biblioteca</h1>
           </div>
         </div>
+
+        <!--TABELA DE STAUTS DOS LIVROS-->
+
+        <div class="row mt-5">
+          
+          <div class="col-md-12">
+            <div class="container">
+              <div class="card-body">
+                <div class="table-responsive shadow bg-white rounded-4">
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                          <h5 class="p-3 text-center bold">Status do Dia - DIA</h5>
+
+                      </tr>
+                    </thead>
+
+                  </table>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+      </div>
+        
       </div>
     </div>
 
