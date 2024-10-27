@@ -116,9 +116,10 @@ if(isset($_SESSION['NOME'])) {
               <div class="card-body">
                 <div class="table-responsive shadow bg-white rounded-4">
                   <table class="table">
+
                     <thead class="thead-dark">
                       <tr>
-                          <h5 class="p-3 text-center bold">Status do Dia - DIA</h5>
+                        <h5 class="p-3 text-center bold">Status do Dia - DIA</h5>
 
                       </tr>
                     </thead>
@@ -127,10 +128,9 @@ if(isset($_SESSION['NOME'])) {
                 </div>
               </div>
             </div>
+          </div>
 
         </div>
-
-      </div>
         
       </div>
     </div>

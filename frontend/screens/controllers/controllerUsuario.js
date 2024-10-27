@@ -82,7 +82,7 @@ $(document).ready(function(){
             //criando a funcionalidade pra visualisar os registro no BD
             $('.btn-view').click(function(e){
                 e.preventDefault()
-                let dados = `RA=${$(this).attr('ra')}&operacao=view`
+                let dados = `RA=${$(this).attr('id')}&operacao=view`
                 $.ajax({
                     type: 'POST',
                     dataType: 'JSON',
@@ -109,7 +109,7 @@ $(document).ready(function(){
             //criando a funcionalidade pra editar os registro no BD
             $('.btn-edit').click(function(e){
                 e.preventDefault()
-                let dados = `RA=${$(this).attr('ra')}&operacao=view`
+                let dados = `RA=${$(this).attr('id')}&operacao=view`
                 $.ajax({
                     type: 'POST',
                     dataType: 'JSON',
@@ -117,7 +117,7 @@ $(document).ready(function(){
                     data: dados,
                     url: url,
                     success: function(dados){
-                        $('#ra').val(dados[0].RA).attr('disabled', false)
+                        $('#ra').val(dados[0].RA).attr('disabled', true)
                         $('#nome').val(dados[0].NOME).attr('disabled', false)
                         $('#serie').val(dados[0].SERIE).attr('disabled', false)
                         $('#email').val(dados[0].EMAIL).attr('disabled', false)
@@ -136,7 +136,7 @@ $(document).ready(function(){
             //criando a funcionalidade pra excluir os registro no BD
             $('.btn-delete').click(function(e){
                 e.preventDefault()
-                let dados = `ra=${$(this).attr('ra')}&operacao=delete`
+                let dados = `ra=${$(this).attr('id')}&operacao=delete`
                 $.ajax({
                     type: 'POST',
                     dataType: 'JSON',

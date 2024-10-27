@@ -42,7 +42,7 @@ if($_POST['operacao'] == 'create'){
 if($_POST['operacao'] == 'read'){
     try{
 
-        $sql = "SELECT ID_USER, ID_LIVRO,
+        $sql = "SELECT EMPRESTIMO.*,
                 USUARIO.NOME AS USERNAME, 
                 LIVRO.NOME AS BOOKNAME FROM EMPRESTIMO 
                 JOIN USUARIO ON ID_USER = USUARIO.RA
@@ -146,6 +146,23 @@ if($_POST['operacao'] == 'read_livro'){
     try{
 
         $sql = "SELECT TOMBO, NOME FROM LIVRO";
+        $resultado = $pdo->query($sql); //recebe a query dos valores do banco
+        while($row = $resultado->fetch(PDO::FETCH_ASSOC)){ //while pra varrer o banco linha por linha usando o FETCH e o row vai ler linha por linha do banco
+            $dados[] = array_map(null, $row); //array pra mapear os dados, recebe 2 parametros
+        }
+
+    }catch(PDOException $e){
+        $dados = [
+            'type' => 'error',
+            'message' => 'Erro de consulta: ' . $e -> getMessage()
+        ];
+    }
+}
+
+if($_POST['operacao'] == 'view'){
+    try{
+
+        $sql = "SELECT * FROM EMPRESTIMO WHERE ID = ".$_POST['ID']."";
         $resultado = $pdo->query($sql); //recebe a query dos valores do banco
         while($row = $resultado->fetch(PDO::FETCH_ASSOC)){ //while pra varrer o banco linha por linha usando o FETCH e o row vai ler linha por linha do banco
             $dados[] = array_map(null, $row); //array pra mapear os dados, recebe 2 parametros

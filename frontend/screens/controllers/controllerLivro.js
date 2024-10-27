@@ -104,7 +104,7 @@ $(document).ready(function(){
             //criando a funcionalidade pra visualisar os registro no BD
             $('.btn-view').click(function(e){
                 e.preventDefault()
-                let dados = `TOMBO=${$(this).attr('tombo')}&operacao=view`
+                let dados = `TOMBO=${$(this).attr('id')}&operacao=view`
                 $.ajax({
                     type: 'POST',
                     dataType: 'JSON',
@@ -115,6 +115,7 @@ $(document).ready(function(){
                         $('#tombo').val(dados[0].TOMBO).attr('disabled', true)
                         $('#nome').val(dados[0].NOME).attr('disabled', true)
                         $('.btn-save').hide()
+                        $('.btn-new-input').hide()
                         //alterando o cabeçalho o modal
                         $('.modal-title').empty().append('Visualização do livro')
                         //abrindo modal
@@ -127,7 +128,7 @@ $(document).ready(function(){
             //criando a funcionalidade pra editar os registro no BD
             $('.btn-edit').click(function(e){
                 e.preventDefault()
-                let dados = `TOMBO=${$(this).attr('tombo')}&operacao=view`
+                let dados = `TOMBO=${$(this).attr('id')}&operacao=view`
                 $.ajax({
                     type: 'POST',
                     dataType: 'JSON',
@@ -138,6 +139,7 @@ $(document).ready(function(){
                         $('#tombo').val(dados[0].TOMBO).attr('disabled', false)
                         $('#nome').val(dados[0].NOME).attr('disabled', false)
                         $('.btn-save').empty().append('Alterar cadastro').attr('data-operation', 'update').show()
+                        $('.btn-new-input').hide()
                         //alterando o cabeçalho o modal
                         $('.modal-title').empty().append('Edição do livro')
                         //abrindo modal
@@ -150,7 +152,7 @@ $(document).ready(function(){
             //criando a funcionalidade pra excluir os registro no BD
             $('.btn-delete').click(function(e){
                 e.preventDefault()
-                let dados = `tombo=${$(this).attr('tombo')}&operacao=delete`
+                let dados = `tombo=${$(this).attr('id')}&operacao=delete`
                 $.ajax({
                     type: 'POST',
                     dataType: 'JSON',

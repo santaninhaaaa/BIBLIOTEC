@@ -57,18 +57,42 @@ $(document).ready(function(){
 
           $('tbody').append(`
             <tr>
-              <th class="text-center">${dado.ID_USER}</td>
+              <th class="text-center">${dado.ID_USER}</th>
               <td class="text-center">${dado.USERNAME}</td>
               <th class="text-center">${dado.ID_LIVRO}</th>
               <td class="text-center">${dado.BOOKNAME}</td>
               <td class="text-center">
-                <button class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
-                <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button id="${dado.ID}" class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
               </td>
             </tr>
           `)
 
       }
+
+      //criando a funcionalidade pra visualisar os registro no BD
+      $('.btn-view').click(function(e){
+        e.preventDefault()
+        let dados = `ID=${$(this).attr('id')}&operacao=view`
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            assync: true,
+            data: dados,
+            url: url,
+            success: function(dados){
+              $('#ra').val(dados[0].ID_USER).attr('disabled', true)
+              $('#tombo').val(dados[0].ID_LIVRO).attr('disabled', true)
+              $('.user').val(dados[0].USERNAME)
+              $('.livro').val(dados[0].BOOKNAME)
+              $('.btn-save').hide()
+              //alterando o cabeçalho o modal
+              $('.modal-title').empty().append('Visualização do empréstimo')
+              //abrindo modal
+              $('#modal-emprestimo').modal('show')
+            }
+
+        })
+      })
     }
   })
 
