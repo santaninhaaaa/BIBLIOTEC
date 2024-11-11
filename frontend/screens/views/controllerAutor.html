@@ -1,0 +1,66 @@
+<div class= "col">
+    <div class="container">
+      <div class="card-body">
+        <h2 class="text-center text-dark mt-5">Gerenciamento de autores</h2>
+        <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Que autor você está a procura?">
+        <div class="table-responsive shadow bg-white rounded-4">
+          <table class="table">
+            <thead class="thead-dark sticky-top">
+              <tr>
+                <th scope="col" class="text-center">ID</th>
+                <th scope="col" class="text-center">Nome</th>
+                <th scope="col" class="text-center">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="table-autor">
+              <tr>
+                <th class="text-center">ID do autor</td>
+                <td class="text-center">Nome do autor</td>
+                <td class="text-center">
+                  <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                  <button class="btn btn-danger btn-delete"><i class="fa-solid fa-trash-can"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="btn btn-dark btn-lg btn-new mt-3"><i class="fa-solid fa-plus"></i> Adicionar autor</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+    <div id="modal-autor" class="modal fade" tabindex="-1" aria-labelledby="my-modal-title" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">AUTOR TÍTULO</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-autor" class="needs-validation" novalidate>
+                        
+                        <div class="row g-3">
+
+                            <input type="number" name="id" id="id" hidden>
+                        
+                            <div class="mb-3 col form-group">
+                                <label>Nome</label>
+                                <input type="text" name="nome" id="nome" autocomplete="off" class="form-control border border-secondary">
+                            </div>
+                
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button class="btn btn-primary btn-block btn-save">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+  <script src="frontend/screens/controllers/controllerAutor.js"></script>

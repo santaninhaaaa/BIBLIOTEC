@@ -70,6 +70,7 @@ $(document).ready(function(){
         $('#modal-livro').modal('show')
         //inclui propriedade data no botão de salvar
         $('.btn-save').empty().append('Salvar').attr('data-operation', 'create').show()
+        $('.btn-new-input').show()
         //removendo os dados que ficam "salvos" quando vc clicar pra criar
         $('input[type="number"]').val('').attr('disabled', false)
         $('input[type="text"]').val('').attr('disabled', false)
@@ -139,7 +140,7 @@ $(document).ready(function(){
                         $('#tombo').val(dados[0].TOMBO).attr('disabled', false)
                         $('#nome').val(dados[0].NOME).attr('disabled', false)
                         $('.btn-save').empty().append('Alterar cadastro').attr('data-operation', 'update').show()
-                        $('.btn-new-input').hide()
+                        $('.btn-new-input').hide().attr('disabled', true)
                         //alterando o cabeçalho o modal
                         $('.modal-title').empty().append('Edição do livro')
                         //abrindo modal

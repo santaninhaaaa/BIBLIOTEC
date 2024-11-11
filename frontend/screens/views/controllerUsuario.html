@@ -86,15 +86,15 @@
             <label>Telefone</label>
             <input type="text" name="telefone" id="telefone" autocomplete="off" class="form-control phone_with_ddd border border-secondary">
           </div>
-          <div class="mb-3 form-group">
-            <label>ID do Administrador</label>
-            <input type="number" name="adm_id" id="adm_id" class="form-control border border-secondary">
-          </div>
-            
+
+          <input type="number" name="adm_id" id="adm_id" hidden> 
           
         </form>
       </div>
       <div class="modal-footer">
+        <div class="admin-info">
+          <p id="admin-name" class="text-muted"></p>
+        </div>
         <button class="btn btn-primary btn-block btn-save">Salvar</button>
       </div>
     </div>

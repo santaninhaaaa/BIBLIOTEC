@@ -63,8 +63,8 @@ if($_POST['operacao'] == 'read'){
 
 if($_POST['operacao'] == 'update'){
 
-    if(empty($_POST['nome']) ||
-       empty($_POST['tombo'])){
+    if(empty($_POST['nome'][0]) ||
+       empty($_POST['tombo'][0])){
 
         $dados = [
             'type' => 'error',
@@ -76,8 +76,8 @@ if($_POST['operacao'] == 'update'){
             $sql = "UPDATE LIVRO SET NOME = ? WHERE TOMBO = ?";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
             $stmt -> execute([ //executa sql
-                $_POST['nome'],
-                $_POST['tombo']
+                $_POST['nome'][0],
+                $_POST['tombo'][0]
             ]);
             $dados = [
                 'type' => 'success',

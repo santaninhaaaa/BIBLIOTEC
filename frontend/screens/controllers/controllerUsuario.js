@@ -19,15 +19,15 @@ $(document).ready(function(){
             let conteudoDaLinha = linhas[posicao].innerHTML.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
             if (true === conteudoDaLinha.includes(expressao)) {
-                linhas[posicao].style.display = '';
+                linhas[posicao].style.display = ''
             } else {
-                linhas[posicao].style.display = 'none';
+                linhas[posicao].style.display = 'none'
             }
         }
     })
 
     //mascara para telefone
-    $('.phone_with_ddd').mask('(00) 00000-0000');
+    $('.phone_with_ddd').mask('(00) 00000-0000')
 
 
     // criar funcionalidade pra abrir modal de novo registor
@@ -45,7 +45,8 @@ $(document).ready(function(){
         $('select').val('').attr('disabled', false)
         $('input[type="email"]').val('').attr('disabled', false)
         $('input[type="text"]').val('').attr('disabled', false)
-        $('input[type="number"]').val('').attr('disabled', false)
+        $('input[type="number"]').val('')
+        $('#admin-name').empty()
     })
 
   //criando funcionalidade para preencher a tabela com as info do BD
@@ -95,10 +96,11 @@ $(document).ready(function(){
                         $('#serie').val(dados[0].SERIE).attr('disabled', true)
                         $('#email').val(dados[0].EMAIL).attr('disabled', true)
                         $('#telefone').val(dados[0].TELEFONE).attr('disabled', true)
-                        $('#adm_id').val(dados[0].ADM_ID).attr('disabled', true)
+                        $('#adm_id').val(dados[0].ADM_ID)
                         $('.btn-save').hide()
                         //alterando o cabeçalho o modal
                         $('.modal-title').empty().append('Visualização do usuário')
+                        $('#admin-name').html(`Cadastro criado por: <b>${dados[0].ADMNAME}</b>`)
                         //abrindo modal
                         $('#modal-user').modal('show')
                     }
@@ -117,15 +119,16 @@ $(document).ready(function(){
                     data: dados,
                     url: url,
                     success: function(dados){
-                        $('#ra').val(dados[0].RA).attr('disabled', true)
+                        $('#ra').val(dados[0].RA).attr('disabled', false)
                         $('#nome').val(dados[0].NOME).attr('disabled', false)
                         $('#serie').val(dados[0].SERIE).attr('disabled', false)
                         $('#email').val(dados[0].EMAIL).attr('disabled', false)
                         $('#telefone').val(dados[0].TELEFONE).attr('disabled', false)
-                        $('#adm_id').val(dados[0].ADM_ID).attr('disabled', false)
+                        $('#adm_id').val(dados[0].ADM_ID)
                         $('.btn-save').empty().append('Alterar cadastro').attr('data-operation', 'update').show()
                         //alterando o cabeçalho o modal
                         $('.modal-title').empty().append('Edição do usuário')
+                        $('#admin-name').empty()
                         //abrindo modal
                         $('#modal-user').modal('show')
                     }

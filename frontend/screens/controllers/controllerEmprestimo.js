@@ -96,7 +96,7 @@ $(document).ready(function(){
     }
   })
 
-  //criando funcionalidade para preencher o modal com as info do BD
+  //criando funcionalidade para ler os usuarios do BD
   let dadosUser = 'operacao=read_user'
   $.ajax({
     type: 'POST',
@@ -129,6 +129,7 @@ $(document).ready(function(){
     }
   })
 
+  //criando funcionalidade para ler os livros do BD
   let dadosLivro = 'operacao=read_livro'
   $.ajax({
     type: 'POST',

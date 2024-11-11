@@ -1,45 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - BiblioTec</title>
-    <!--CSS - STYLESHEETS-->
-    <link rel="stylesheet" href="frontend/vendor/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="frontend/vendor/fontAwesome/css/all.css">
-    <link rel="stylesheet" href="frontend/vendor/sweetAlert/dist/sweetalert2.css">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - BiblioTec</title>
+  <!--CSS - STYLESHEETS-->
+  <link rel="stylesheet" href="frontend/vendor/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="frontend/vendor/fontAwesome/css/all.css">
+  <link rel="stylesheet" href="frontend/vendor/sweetAlert/dist/sweetalert2.css">
 
-    <link rel="stylesheet" href="frontend/assets/css/style_index.css" />
-    <!--JS - SCRIPTS-->
-    <script src="frontend/vendor/scripts/jquery-3.7.1.js" defer></script>
-    <script src="frontend/vendor/bootstrap/js/bootstrap.js" defer></script>
-    <script src="frontend/vendor/sweetAlert/dist/sweetalert2.all.js" defer></script>
+  <link rel="stylesheet" href="frontend/assets/css/style_index.css" />
+  <!--JS - SCRIPTS-->
+  <script src="frontend/vendor/scripts/jquery-3.7.1.js" defer></script>
+  <script src="frontend/vendor/bootstrap/js/bootstrap.js" defer></script>
+  <script src="frontend/vendor/sweetAlert/dist/sweetalert2.all.js" defer></script>
 
-    <script src="frontend/screens/controllers/controllerLogin.js" defer></script>
-  </head>
-  <body>
+  <script src="frontend/screens/controllers/controllerLogin.js" defer></script>
+</head>
+<body>
 
-    <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
-        <div class="col-md-4">
-          <form class="mx-auto rounded-4" id="form-login">
-            <h2 class="text-center">BiblioTec</h2>
-            <div class="mt-5 mb-3">
-              <label class="form-label">Login</label>
-              <input type="text" class="form-control border border-secondary" autocomplete="off" id="LOGIN" name="LOGIN" aria-describedby="userHelp"/>
-            </div>
-    
-            <div class="mb-3">
-                <label class="form-label">Senha</label>
-                <input type="password" class="form-control border border-secondary" id="SENHA" name="SENHA" aria-describedby="userHelp"/>
-  
-                <div id="forgotSenha" class="form-text mt-3"><a href="">Esqueceu a senha?</a></div>
-                <div id="cadastro" class="form-text mt-3"><a href="cadastroAdm.html">Não possui conta? Cadastre-se aqui.</a></div>
-              </div>
-    
-            <button type="submit" class="btn btn-primary btn-login mt-4 col-6 mx-auto d-grid">Logar</button>
-          </form>
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+    <div class="col-md-4">
+      <form class="mx-auto rounded-4" id="form-login">
+        <h2 class="text-center">BiblioTec</h2>
+        <div class="mt-5 mb-3">
+          <label class="form-label">Login</label>
+          <input type="text" class="form-control border border-secondary" autocomplete="off" id="LOGIN" name="LOGIN" aria-describedby="userHelp"/>
         </div>
-    </div>
 
-  </body>
+        <div class="mb-3">
+            <label class="form-label">Senha</label>
+            <input type="password" class="form-control border border-secondary" id="SENHA" name="SENHA" aria-describedby="userHelp"/>
+
+            <div id="forgotSenha" class="form-text mt-3"><a href="">Esqueceu a senha?</a></div>
+            <div id="cadastro" class="form-text mt-3 btn-new"><a href="frontend/screens/views/controllerCadastroAdm.html">Não possui conta? Cadastre-se aqui.</a></div>
+          </div>
+
+        <button type="submit" class="btn btn-primary btn-login mt-4 col-6 mx-auto d-grid">Logar</button>
+      </form>
+    </div>
+</div>
+
+<div id="modal-cadastro-adm" class="modal fade" tabindex="-1" aria-labelledby="my-modal-title" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="my-modal-title">USER TÍTULO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-cadastro-adm" class="needs-validation" novalidate>
+          
+          <div class="col">
+
+            <h2 class="text-center">Cadastrar Administrador</h2>
+            
+            <div class="mt-5 mb-3 form-group">
+              <label for="exampleInputUser" class="form-label">Nome</label>
+              <input type="text" class="form-control border border-secondary" autocomplete="off" id="nome" name="nome" aria-describedby="userHelp"/>
+            </div>
+            <div class="mb-3 form-group">
+              <label for="exampleInputUser" class="form-label">Login</label>
+              <input type="text" class="form-control border border-secondary" autocomplete="off" id="login" name="login" aria-describedby="userHelp"/>
+            </div>
+            <div class="mb-3 form-group">
+              <label for="exampleInputPassword1" class="form-label">Senha</label>
+              <input type="password" class="form-control border border-secondary" id="senha" name="senha"/>
+            </div>
+
+          </div>
+
+            
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-save mt-4 col-6 mx-auto d-grid">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
 </html>

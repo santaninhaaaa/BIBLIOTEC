@@ -72,29 +72,15 @@ if($_POST['operacao'] == 'update'){
     }else{
 
         try{
-            //se a senha estiver vazia, nn atualiza senha
-            $senhaQuery = !empty($_POST['senha']) ? ", SENHA = ?" : "";
-
-            $sql = "UPDATE ADM SET LOGIN = ?, $senhaQuery WHERE ID = ?";
+            $sql = "UPDATE ADM SET NOME = ?, LOGIN = ?, SENHA = ?  WHERE ID = ?";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
 
-            if (!empty($_POST['senha'])){
-
-                $stmt -> execute([ //executa sql
-                    $_POST['nome'],
-                    $_POST['login'],
-                    $_POST['senha'],
-                    $_POST['id']
-                ]);
-            } else {
-
-                $stmt -> execute([ //executa sql
-                    $_POST['nome'],
-                    $_POST['login'],
-                    $_POST['id']
-                ]);
-            }
-           
+            $stmt -> execute([ //executa sql
+                $_POST['nome'],
+                $_POST['login'],
+                $_POST['senha'],
+                $_POST['id']
+            ]);
             $dados = [
                 'type' => 'success',
                 'message' => 'Cadastro do ADM alterado com sucesso'
@@ -110,8 +96,9 @@ if($_POST['operacao'] == 'update'){
 }
 
 if($_POST['operacao'] == 'delete'){
+    session_start();
 
-    if(empty($_POST['id'])){
+    if(empty($_SESSION['ADM_ID'])){
 
         $dados = [
             'type' => 'error',
@@ -120,10 +107,10 @@ if($_POST['operacao'] == 'delete'){
     }else{
 
         try{
-            $sql = "DELETE FROM ADM WHERE ID = ?";
+            $sql = "DELETE FROM ADM WHERE ID = :adm_id";
             $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
             $stmt -> execute([ //executa sql
-                $_POST['id']
+                ':adm_id' => $_SESSION['ADM_ID']
             ]);
             $dados = [
                 'type' => 'success',
@@ -146,7 +133,7 @@ if($_POST['operacao'] == 'login'){
         if(empty($login) || empty($senha)){
             $dados = [
                 'type' => 'error',
-                'message' => 'Usuário ou senha não preeenchidos'
+                'message' => 'Usuário ou senha não preeenchidos ou incorretos'
             ];
         }
         $sql = $pdo->prepare("SELECT * FROM ADM WHERE LOGIN = '".$_POST['LOGIN']."' AND SENHA = '".$_POST['SENHA']."'");
@@ -171,6 +158,24 @@ if($_POST['operacao'] == 'login'){
         }
     } catch(PDOException $e){
         echo $e->getMessage();
+    }
+}
+
+if($_POST['operacao'] == 'view'){
+    session_start();
+
+    if (isset($_SESSION['NOME']) && isset($_SESSION['LOGIN']) && isset($_SESSION['ADM_ID'])) {
+        $dados = [
+            'type' => 'success',
+            'NOME' => $_SESSION['NOME'],
+            'LOGIN' => $_SESSION['LOGIN'],
+            'ADM_ID' => $_SESSION['ADM_ID']
+        ];
+    } else {
+        $dados = [
+            'type' => 'error',
+            'message' => 'Nenhum administrador logado'
+        ];
     }
 }
 

@@ -8,13 +8,14 @@ include ('../connection/connection.php');
 
 //request mesma função do post e get, mas ele ouve os dois
 if($_POST['operacao'] == 'create'){
+    session_start();
 
     if(empty($_POST['ra']) || 
        empty($_POST['nome']) || 
        empty($_POST['serie']) ||
        empty($_POST['email']) ||
        empty($_POST['telefone']) ||
-       empty($_POST['adm_id'])){
+       empty($_SESSION['ADM_ID'])){
 
         $dados = [
             'type' => 'error',
@@ -31,7 +32,7 @@ if($_POST['operacao'] == 'create'){
                 $_POST['serie'],
                 $_POST['email'],
                 $_POST['telefone'],
-                $_POST['adm_id']
+                $_SESSION['ADM_ID']
             ]);
             $dados = [
                 'type' => 'success',
@@ -137,7 +138,9 @@ if($_POST['operacao'] == 'delete'){
 if($_POST['operacao'] == 'view'){
     try{
 
-        $sql = "SELECT * FROM USUARIO WHERE RA = ".$_POST['RA']."";
+        $sql = "SELECT USUARIO.*, ADM.NOME AS ADMNAME FROM USUARIO 
+                JOIN ADM ON USUARIO.ADM_ID = ADM.ID
+                WHERE USUARIO.RA = ".$_POST['RA']."";
         $resultado = $pdo->query($sql); //recebe a query dos valores do banco
         while($row = $resultado->fetch(PDO::FETCH_ASSOC)){ //while pra varrer o banco linha por linha usando o FETCH e o row vai ler linha por linha do banco
             $dados[] = array_map(null, $row); //array pra mapear os dados, recebe 2 parametros
