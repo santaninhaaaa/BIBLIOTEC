@@ -2,7 +2,7 @@
   <div class="container">
     <div class="card-body">
       <h2 class="text-center text-dark mt-5">Gerenciamento de usuários</h2>
-      <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Quem você procura?">
+      <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Quem você procura?" autocomplete="off">
       <div class="table-responsive shadow bg-white rounded-4">
         <table class="table">
           <thead class="thead-dark sticky-top">
@@ -54,18 +54,18 @@
             
             <div class="mb-3 col-md-4 form-group">
               <label>RA</label>
-              <input type="number" name="ra" id="ra" class="form-control border border-secondary">
+              <input type="number" name="ra" id="ra" class="form-control border">
             </div>
             <div class="mb-3 col form-group">
               <label>Nome</label>
-              <input type="text" name="nome" id="nome" autocomplete="off" class="form-control border border-secondary">
+              <input type="text" name="nome" id="nome" autocomplete="off" class="form-control border">
             </div>
 
           </div>
 
           <div class="mb-3 col form-group">
             <label>Série</label>
-            <select name="serie" id="serie" class="form-select border border-secondary">
+            <select name="serie" id="serie" class="form-select border">
               <option value="ds">Desenvolvimento de Sistemas</option>
               <option value="ling">Linguagens</option>
               <option value="cont">Contabilidade</option>
@@ -74,17 +74,17 @@
               <option value="adm">Administração</option>
               <option value="juri">Jurídico</option>
               <option value="quim">Química</option>
-              <option value="none">-</option>
+              <option value="none">Professor / Funcionário</option>
             </select>
           </div>
           
           <div class="mb-3 form-group">
             <label>E-mail</label>
-            <input type="email" name="email" id="email" autocomplete="off" class="form-control border border-secondary">
+            <input type="email" name="email" id="email" autocomplete="off" class="form-control border">
           </div>
           <div class="mb-3 form-group">
             <label>Telefone</label>
-            <input type="text" name="telefone" id="telefone" autocomplete="off" class="form-control phone_with_ddd border border-secondary">
+            <input type="text" name="telefone" id="telefone" autocomplete="off" class="form-control phone_with_ddd border">
           </div>
 
           <input type="number" name="adm_id" id="adm_id" hidden> 

@@ -2,20 +2,22 @@
   <div class="container">
     <div class="card-body">
       <h2 class="text-center text-dark mt-5">Gerenciamento de livros</h2>
-      <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Que livro você procura?">
+      <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Que livro você procura?" autocomplete="off">
       <div class="table-responsive shadow bg-white rounded-4">
         <table class="table">
           <thead class="thead-dark sticky-top">
             <tr>
               <th scope="col" class="text-center">Tombo</th>
               <th scope="col" class="text-center">Nome</th>
+              <th scope="col" class="text-center">Autor</th>
               <th scope="col" class="text-center">Ações</th>
             </tr>
           </thead>
           <tbody id="table-livro">
             <tr>
-              <th class="text-center">Tombo do livro</td>
+              <th class="text-center">Tombo do livro</th>
               <td class="text-center">Nome do livro</td>
+              <td class="text-center">Nome do autor</td>
               <td class="text-center">
                 <button class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
                 <button class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -45,30 +47,50 @@
 
         <form id="form-livro">
 
-          <div id="show-item">
-            <div class="row g-3">
-            
-              <div class="mt-4 mb-3 col-md-3 form-group">
-                <label>Tombo</label>
-                <input type="number" autocomplete="off" name="tombo[]" id="tombo" class="form-control border border-secondary">
-              </div>
-    
-              <div class="mt-4 mb-3 col-md-6 form-group">
-                <label>Nome</label>
-                <input type="text" autocomplete="off" name="nome[]" id="nome" class="form-control border border-secondary">
-              </div>           
-  
-              <div class="mb-3 col form-group mt-5">
-                <button class="btn btn-success btn-new-input"><i class="fa-solid fa-plus"></i></button>
-              </div>
-  
+          <div class="row">
+
+            <div class="mb-3 col-md-3 form-group">
+              <label>Tombo</label>
+              <input type="number" autocomplete="off" name="tombo[]" id="tombo" class="form-control border">
             </div>
+  
+            <div class="mb-3 col-md-6 form-group">
+              <label>Nome</label>
+              <input type="text" autocomplete="off" name="nome[]" id="nome" class="form-control border">
+            </div>     
+
+          </div>
+          
+          <div class="row">
+
+            <div class="mb-3 col-md-9 form-group">
+              <label>Autor</label>
+              <select name="autor[]" id="autor" class="form-select border autor">
+                <option value=""></option>
+              </select>
+            </div>
+
+            <input type="number" name="adm_id" id="adm_id" hidden> 
+
+            <div class="mb-3 col form-group mt-4">
+              <button class="btn btn-success btn-new-input"><i class="fa-solid fa-plus"></i></button>
+            </div>
+
+
+          </div>
+
+          <div id="show-item" class="row">
+
           </div>
 
         </form>
 
       </div>
       <div class="modal-footer">
+        <div class="admin-info">
+          <p id="warning-message" class="text-danger"></p>
+        </div>
+        <p id="admin-name" class="text-muted"></p>
         <button type="submit" class="btn btn-primary btn-block btn-save">Salvar</button>
       </div>
     </div>

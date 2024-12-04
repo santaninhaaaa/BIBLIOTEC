@@ -82,8 +82,66 @@ $(document).ready(function(){
                 })
             })
 
+            let dado = 'operacao=count_all'
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'JSON',
+                assync: true,
+                data: dado,
+                url: url,
+                success: function(dado){
+            
+                    $('#table-adm').empty()
+                    $('#table-adm').html(`
+
+                        <tr>
+                            <th class="p-3">Empréstimos</td>
+                            <td class="text-center">${dado.TOTAL_EMPRESTIMO}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3">Devoluções</td>
+                            <td class="text-center">${dado.TOTAL_DEVOLUCAO}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3">Cadastros de usuários</td>
+                            <td class="text-center">${dado.TOTAL_USER}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-3">Cadastros de livros</td>
+                            <td class="text-center">${dado.TOTAL_LIVRO}</td>
+                        </tr>
+
+                    `)
+                }
+            })
+
 
         }
+    })
+
+        //criando a funcionalidade pra salvar novos registros no BD
+    $('.btn-save').click(function(e){
+        e.preventDefault()
+        let dados = $('#form-adm').serialize()
+        dados += `&operacao=${$(this).attr('data-operation')}`
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            assync: true,
+            data: dados,
+            url: url,
+            success: function(dados){
+                Swal.fire({
+                    icon: dados.type,
+                    title: 'BiblioTec',
+                    text: dados.message
+                })
+                $('#modal-adm').modal('hide')
+                $('#main').empty().load('frontend/screens/views/controllerConfigAdm.html')
+            }
+
+        })
     })
 
 })

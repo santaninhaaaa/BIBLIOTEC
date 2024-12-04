@@ -1,0 +1,37 @@
+<?php
+
+include ('../connection/connection.php');
+
+if($_POST['operacao'] == 'count_all'){
+    try{
+
+        $sql = "SELECT 
+                (SELECT COUNT(*) FROM EMPRESTIMO WHERE (ID_STATUS = 1 OR ID_STATUS = 2 OR ID_STATUS = 3) AND DATE(DATA_RETIRADA) = CURDATE()) AS TOTAL_EMPRESTIMO_HJ,
+                (SELECT COUNT(*) FROM EMPRESTIMO WHERE ID_STATUS = 3 AND DATE(DATA_DEVOLUCAO) = CURDATE()) AS TOTAL_DEVOLUCAO_HJ,
+                (SELECT COUNT(*) FROM USUARIO WHERE DATE(DATA_CADASTRO) = CURDATE()) AS TOTAL_USER_HJ,
+                (SELECT COUNT(*) FROM LIVRO WHERE DATE(DATA_CADASTRO) = CURDATE()) AS TOTAL_LIVRO_HJ,
+                
+                (SELECT COUNT(*) FROM EMPRESTIMO WHERE (ID_STATUS = 1 OR ID_STATUS = 2 OR ID_STATUS = 3) AND MONTH(DATA_RETIRADA) = MONTH(CURDATE()) AND YEAR(DATA_RETIRADA) = YEAR(CURDATE())) AS TOTAL_EMPRESTIMO_MES,
+                (SELECT COUNT(*) FROM EMPRESTIMO WHERE ID_STATUS = 3 AND MONTH(DATA_DEVOLUCAO) = MONTH(CURDATE()) AND YEAR(DATA_DEVOLUCAO) = YEAR(CURDATE())) AS TOTAL_DEVOLUCAO_MES,
+                (SELECT COUNT(*) FROM USUARIO WHERE MONTH(DATA_CADASTRO) = MONTH(CURDATE()) AND YEAR(DATA_CADASTRO) = YEAR(CURDATE())) AS TOTAL_USER_MES,
+                (SELECT COUNT(*) FROM LIVRO WHERE MONTH(DATA_CADASTRO) = MONTH(CURDATE()) AND YEAR(DATA_CADASTRO) = YEAR(CURDATE())) AS TOTAL_LIVRO_MES,
+                
+                (SELECT COUNT(*) FROM EMPRESTIMO WHERE (ID_STATUS = 1 OR ID_STATUS = 2 OR ID_STATUS = 3) AND YEAR(DATA_RETIRADA) = YEAR(CURDATE())) AS TOTAL_EMPRESTIMO_ANO,
+                (SELECT COUNT(*) FROM EMPRESTIMO WHERE ID_STATUS = 3 AND YEAR(DATA_DEVOLUCAO) = YEAR(CURDATE())) AS TOTAL_DEVOLUCAO_ANO,
+                (SELECT COUNT(*) FROM USUARIO WHERE YEAR(DATA_CADASTRO) = YEAR(CURDATE())) AS TOTAL_USER_ANO,
+                (SELECT COUNT(*) FROM LIVRO WHERE YEAR(DATA_CADASTRO) = YEAR(CURDATE())) AS TOTAL_LIVRO_ANO";
+                  
+        $resultado = $pdo->query($sql); //recebe a query dos valores do banco
+        $dados = $resultado->fetch(PDO::FETCH_ASSOC);
+
+    }catch(PDOException $e){
+        $dados = [
+            'type' => 'error',
+            'message' => 'Erro de consulta: ' . $e -> getMessage()
+        ];
+    }
+}
+
+echo json_encode($dados);
+
+?>

@@ -4,24 +4,24 @@ $(document).ready(function(){
   const url = 'backend/model/emprestimoModel.php'
 
   //criar funcionalidade para a busca de emprestimos - filtragem
-  const INPUT_BUSCA = document.getElementById('input-busca');
-  const TABLE_EMPRESTIMO = document.getElementById('table-emprestimo');
+  const INPUT_BUSCA = document.getElementById('input-busca')
+  const TABLE_EMPRESTIMO = document.getElementById('table-emprestimo')
 
   INPUT_BUSCA.addEventListener('keyup', () => {
-    let expressao = INPUT_BUSCA.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    let expressao = INPUT_BUSCA.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")
 
-    let linhas = TABLE_EMPRESTIMO.getElementsByTagName('tr');
+    let linhas = TABLE_EMPRESTIMO.getElementsByTagName('tr')
 
     for (let posicao in linhas){
       if (true === isNaN(posicao)) {
-          continue;
+          continue
       }
-      let conteudoDaLinha = linhas[posicao].innerHTML.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+      let conteudoDaLinha = linhas[posicao].innerHTML.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")
 
       if (true === conteudoDaLinha.includes(expressao)) {
-          linhas[posicao].style.display = '';
+          linhas[posicao].style.display = ''
       } else {
-          linhas[posicao].style.display = 'none';
+          linhas[posicao].style.display = 'none'
       }
     }
   })
@@ -38,8 +38,10 @@ $(document).ready(function(){
     //removendo os dados que ficam "salvos" quando vc clicar pra criar
     $('input[type="number"]').val('').attr('disabled', false)
     $('input[type="number"]').val('').attr('disabled', false)
+    $('input[type="number"]').val('')
     $('.user').empty()
     $('.livro').empty()
+    $('#admin-name').empty()
   })
 
   //criando funcionalidade para preencher a tabela com as info do BD
@@ -60,7 +62,7 @@ $(document).ready(function(){
               <th class="text-center">${dado.ID_USER}</th>
               <td class="text-center">${dado.USERNAME}</td>
               <th class="text-center">${dado.ID_LIVRO}</th>
-              <td class="text-center">${dado.BOOKNAME}</td>
+              <td class="text-center">${dado.BOOKNAME} - ${dado.AUTORNAME}</td>
               <td class="text-center">
                 <button id="${dado.ID}" class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
               </td>
@@ -82,11 +84,13 @@ $(document).ready(function(){
             success: function(dados){
               $('#ra').val(dados[0].ID_USER).attr('disabled', true)
               $('#tombo').val(dados[0].ID_LIVRO).attr('disabled', true)
-              $('.user').val(dados[0].USERNAME)
-              $('.livro').val(dados[0].BOOKNAME)
+              $('#id_adm').val(dados[0].ID_ADM)
+              $('.user').html(`<b>${dados[0].USERNAME}</b>`)
+              $('.livro').html(`<b>${dados[0].BOOKNAME} - ${dados[0].AUTORNAME}</b>`)
               $('.btn-save').hide()
               //alterando o cabeçalho o modal
               $('.modal-title').empty().append('Visualização do empréstimo')
+              $('#admin-name').html(`Empréstimo feito por: <b>${dados[0].ADMNAME}</b>`)
               //abrindo modal
               $('#modal-emprestimo').modal('show')
             }
@@ -144,17 +148,20 @@ $(document).ready(function(){
       const livros = {} //guarda os dados do livro
       for(const dado of dadosLivro){
 
-        livros[dado.TOMBO] = dado.NOME //guarda livro com tombo como uma chave
+        livros[dado.TOMBO] = { //guarda livro com tombo como uma chave
+          nome: dado.NOME, 
+          autor: dado.AUTORNAME
+        }
 
       }
 
       $('#tombo').on('input', function() {
         const tomboDigitado = $(this).val() // Obtém o RA digitado
-        const nomeLivro = livros[tomboDigitado] // Busca o nome do usuário correspondente
+        const livroInfo = livros[tomboDigitado] // Busca o nome do usuário correspondente
 
         // Se houver um nome correspondente, exibe-o; senão, limpa o campo
-        if (nomeLivro) {
-            $('.livro').html(`<b>${nomeLivro}</b>`)
+        if (livroInfo) {
+            $('.livro').html(`<b>${livroInfo.nome} - ${livroInfo.autor}</b>`)
         } else {
             $('.livro').html(`<b>Livro inexistente</b>`) // Limpa o nome se o RA não corresponder
         }

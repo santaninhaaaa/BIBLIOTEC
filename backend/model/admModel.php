@@ -126,6 +126,35 @@ if($_POST['operacao'] == 'delete'){
     }
 } 
 
+if($_POST['operacao'] == 'count_all'){
+    session_start();
+
+    try{
+
+        $sql = "SELECT 
+                (SELECT COUNT(*) FROM EMPRESTIMO WHERE (ID_STATUS = 1 OR ID_STATUS = 2 OR ID_STATUS = 3) AND ID_ADM = ?) AS TOTAL_EMPRESTIMO,
+                (SELECT COUNT(*) FROM EMPRESTIMO WHERE ID_STATUS = 3 AND HIST_ID_ADM = ?) AS TOTAL_DEVOLUCAO,
+                (SELECT COUNT(*) FROM USUARIO WHERE ADM_ID = ?) AS TOTAL_USER,
+                (SELECT COUNT(*) FROM LIVRO WHERE ID_ADM = ?) AS TOTAL_LIVRO";
+
+        $stmt /*statement*/ = $pdo->prepare($sql); //prepare testa o sql conferindo se não há nenhum codigo malicioso
+        $stmt -> execute([ //executa sql
+            $_SESSION['ADM_ID'],
+            $_SESSION['ADM_ID'],
+            $_SESSION['ADM_ID'],
+            $_SESSION['ADM_ID']
+        ]);
+                  
+        $dados = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    }catch(PDOException $e){
+        $dados = [
+            'type' => 'error',
+            'message' => 'Erro de consulta: ' . $e -> getMessage()
+        ];
+    }
+}
+
 if($_POST['operacao'] == 'login'){
     try{
         $login = isset($_POST['LOGIN']) ? addslashes(trim($_POST['LOGIN'])) : false;

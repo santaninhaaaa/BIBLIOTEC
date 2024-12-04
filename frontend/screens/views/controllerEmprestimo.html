@@ -2,7 +2,7 @@
   <div class="container">
     <div class="card-body">
       <h2 class="text-center text-dark mt-5">Gerenciamento de empréstimos</h2>
-      <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Que empréstimo você procura?">
+      <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="Que empréstimo você procura?" autocomplete="off">
       <div class="table-responsive shadow bg-white rounded-4">
         <table class="table">
           <thead class="thead-dark sticky-top">
@@ -50,13 +50,15 @@
 
             <div class="mb-3 col form-group">
               <label for="ra" class="form-label">RA</label>
-              <input type="number" autocomplete="off" name="id_user" id="ra" class="form-control border border-secondary" placeholder="RA/Cód. de Matrícula">
+              <input type="number" autocomplete="off" name="id_user" id="ra" class="form-control border" placeholder="RA/Cód. de Matrícula">
             </div>
 
             <div class="mb-3 col form-group">
               <label for="tombo" class="form-label">Tombo</label>
-              <input type="number" autocomplete="off" name="id_livro" id="tombo" class="form-control border border-secondary" placeholder="Tombo do livro">
+              <input type="number" autocomplete="off" name="id_livro" id="tombo" class="form-control border" placeholder="Tombo do livro">
             </div>
+
+            <input type="number" name="id_adm" id="id_adm" hidden> 
 
 
           </div>
@@ -71,6 +73,9 @@
         </form>
       </div>
       <div class="modal-footer">
+        <div class="admin-info">
+          <p id="admin-name" class="text-muted"></p>
+        </div>
         <button type="button" class="btn btn-primary w-100 btn-save">Salvar</button>
       </div>
     </div>

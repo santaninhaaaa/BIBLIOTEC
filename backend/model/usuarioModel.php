@@ -138,7 +138,8 @@ if($_POST['operacao'] == 'delete'){
 if($_POST['operacao'] == 'view'){
     try{
 
-        $sql = "SELECT USUARIO.*, ADM.NOME AS ADMNAME FROM USUARIO 
+        $sql = "SELECT USUARIO.*, 
+                ADM.NOME AS ADMNAME FROM USUARIO 
                 JOIN ADM ON USUARIO.ADM_ID = ADM.ID
                 WHERE USUARIO.RA = ".$_POST['RA']."";
         $resultado = $pdo->query($sql); //recebe a query dos valores do banco

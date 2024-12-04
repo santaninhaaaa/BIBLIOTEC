@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 body{
-    background-color: rgb(163, 214, 255);
+    background: #acd5fe;
     animation: transitionIn 0.75s;
+    font-family: 'DM Sans', sans-serif;
 }
 
 form{

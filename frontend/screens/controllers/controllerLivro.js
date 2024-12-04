@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     //constante do arquivo
     const url = 'backend/model/livroModel.php'
+    popularSelect()
 
     //criar funcionalidade para a busca de livros - filtragem
     const INPUT_BUSCA = document.getElementById('input-busca');
@@ -26,42 +27,106 @@ $(document).ready(function(){
         }
     })
 
+    //populando o select de autores
+    function popularSelect(){
+    
+        let dadosAutor = 'operacao=read_autor'
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            assync: true,
+            data: dadosAutor,
+            url: url,
+            success: function(dadosAutor){
+        
+                $('.autor').empty()
+                $('.autor').append('<option></option>') 
+        
+                for(const dado of dadosAutor){
+        
+                    $('.autor').append(`
+                        <option value="${dado.ID}">${dado.NOME}</option>
+                    `)
+        
+                }
+                
+                $('.autor').select2({
+                    theme: "bootstrap4",
+                    language: { noResults: function(){ return "Não encontrado"; }},
+                    placeholder: "Selecione o autor",
+                    allowClear: true,
+                    dropdownParent: $('#modal-livro')
+                })
+                
+            }
+        })
+
+    }
+
     //criar funcionalidade para adicionar ou remover inputs quando cadastrar VÁRIOS livros de uma vez
     $('.btn-new-input').click(function(e){
         e.preventDefault()
 
-        $('#show-item').append(`
-            <div class="row g-3">
-        
-                <div class="mb-3 col-md-3 form-group">
-                    <label>Tombo</label>
-                    <input type="number" autocomplete="off" name="tombo[]" id="tombo" class="form-control border border-secondary">
-                </div>
-        
-                <div class="mb-3 col-md-6 form-group">
-                    <label>Nome</label>
-                    <input type="text" autocomplete="off" name="nome[]" id="nome" class="form-control border border-secondary">
-                </div>
+        const currentInputs = $('#show-item .input-group-wrapper').length
+
+        if(currentInputs < 2){
+
+            $('#show-item').append(`
+
+                <div class="input-group-wrapper">
     
-                <div class="mt-4 col">
-                    <button class="btn btn-danger btn-delete-input"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
+                    <hr/>
     
-            </div>           
-        `)
+                    <div class="row">
+    
+                        <div class="mt-4 mb-3 col-md-3 form-group">
+                            <label>Tombo</label>
+                            <input type="number" autocomplete="off" name="tombo[]" id="tombo" class="form-control border">
+                        </div>
+                
+                        <div class="mt-4 mb-3 col-md-6 form-group">
+                            <label>Nome</label>
+                            <input type="text" autocomplete="off" name="nome[]" id="nome" class="form-control border">
+                        </div>     
+    
+                    </div>
+                    
+                    <div class="row">
+    
+                        <div class="mb-3 col-md-9 form-group">
+                            <label>Autor</label>
+                            <select name="autor[]" id="autor" class="form-select border autor">
+    
+                            </select>
+                        </div>
+    
+                        <div class="mb-3 col form-group mt-4">
+                                <button class="btn btn-danger btn-delete-input"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+        
+                    </div>
+    
+                </div>
+             
+            `)
+
+            $('#warning-message').text('')
+            popularSelect()
+
+        } else {
+            $('#warning-message').text(`Você não pode adicionar mais!`)
+        }
+
 
         $('.btn-delete-input').click(function(e){
             e.preventDefault()
     
-            let row_item = $(this).parent().parent()
-            $(row_item).remove()
+            $(this).closest('.input-group-wrapper').remove()
         })
 
     })
 
-
-
-  // criar funcionalidade pra abrir modal de novo registor
+    //criar funcionalidade pra abrir modal de novo registor
     $('.btn-new').click(function(e){
         e.preventDefault()
         //alterando o cabeçalho o modal
@@ -74,9 +139,14 @@ $(document).ready(function(){
         //removendo os dados que ficam "salvos" quando vc clicar pra criar
         $('input[type="number"]').val('').attr('disabled', false)
         $('input[type="text"]').val('').attr('disabled', false)
+        $('select').val('').attr('disabled', false)
+        $('input[type="number"]').val('')
+        $('#show-item').empty()
+        $('#warning-message').empty()
+        $('#admin-name').empty()
     })
 
-  //criando funcionalidade para preencher a tabela com as info do BD
+    //criando funcionalidade para preencher a tabela com as info do BD
     let dados = 'operacao=read'
     $.ajax({
         type: 'POST',
@@ -90,8 +160,9 @@ $(document).ready(function(){
 
                 $('tbody').append(`
                     <tr>
-                        <th class="text-center">${dado.TOMBO}</td>
+                        <th class="text-center">${dado.TOMBO}</th>
                         <td class="text-center">${dado.NOME}</td>
+                        <td class="text-center">${dado.AUTORNAME}</td>
                         <td class="text-center">
                             <button id="${dado.TOMBO}" class="btn btn-info btn-view"><i class="fa-solid fa-eye"></i></button>
                             <button id="${dado.TOMBO}" class="btn btn-warning btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -115,10 +186,15 @@ $(document).ready(function(){
                     success: function(dados){
                         $('#tombo').val(dados[0].TOMBO).attr('disabled', true)
                         $('#nome').val(dados[0].NOME).attr('disabled', true)
+                        $('#autor').val(dados[0].ID_AUTOR).trigger('change').attr('disabled', true)
+                        $('#adm_id').val(dados[0].ID_ADM)
+                        $('#show-item').empty()
+                        $('#warning-message').empty()
                         $('.btn-save').hide()
                         $('.btn-new-input').hide()
                         //alterando o cabeçalho o modal
                         $('.modal-title').empty().append('Visualização do livro')
+                        $('#admin-name').html(`Cadastro criado por: <b>${dados[0].ADMNAME}</b>`)
                         //abrindo modal
                         $('#modal-livro').modal('show')
                     }
@@ -139,8 +215,12 @@ $(document).ready(function(){
                     success: function(dados){
                         $('#tombo').val(dados[0].TOMBO).attr('disabled', false)
                         $('#nome').val(dados[0].NOME).attr('disabled', false)
+                        $('#autor').val(dados[0].ID_AUTOR).trigger('change').attr('disabled', false)
                         $('.btn-save').empty().append('Alterar cadastro').attr('data-operation', 'update').show()
-                        $('.btn-new-input').hide().attr('disabled', true)
+                        $('#show-item').empty()
+                        $('#warning-message').empty()
+                        $('#admin-name').empty()
+                        $('.btn-new-input').hide()
                         //alterando o cabeçalho o modal
                         $('.modal-title').empty().append('Edição do livro')
                         //abrindo modal
