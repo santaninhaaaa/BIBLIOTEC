@@ -109,12 +109,37 @@
                 <div class="table-responsive shadow bg-white rounded-4">
                   <table class="table">
 
-                    <thead class="thead-dark">
-                      <tr>
-                        <h5 class="p-3 text-center bold">Status do Dia - DIA</h5>
+                    <thead class="thead-dark sticky-top">
 
+                      <h5 class="p-3 text-center bold">Status do Dia</h5>
+                      <tr>
+                        <th colspan="4">
+                          <input type="text" id="input-busca" class="form-control mt-3 mb-3" placeholder="O que procura?" autocomplete="off">
+                        </th>
                       </tr>
+
+                      <tr>
+                        <th scope="col" class="text-center">Nome</th>
+                        <th scope="col" class="text-center">Informações</th>
+                        <th scope="col" class="text-center">Livro</th>
+                      </tr>
+
                     </thead>
+                    <tbody id="atrasado">
+
+                      <tr>
+                        <td class="text-center"><b>(RA)</b> Nome user</td>
+                        <td class="text-center">Curso - Email - Telefone</td>
+                        <td class="text-center"><b>(TOMBO)</b> Nome Livro - Autor</td>
+                      </tr>
+
+                    </tbody>
+
+                    <tfoot>
+                      <tr>
+                        <td colspan="4"><button class="btn btn-primary w-100 btn-save">Salvar</button></td>
+                      </tr>
+                    </tfoot>
 
                   </table>
                 </div>
@@ -133,6 +158,22 @@
 <!--MODAIS-->
 
 <div id="modal-container"></div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="loading-modal">
+  <div class="modal-dialog d-flex justify-content-center align-items-center" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <!-- Spinner do Bootstrap -->
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Carregando...</span>
+        </div>
+        <p>Carregando...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 </body>

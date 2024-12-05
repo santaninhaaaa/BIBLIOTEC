@@ -1,5 +1,13 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../phpMailer/src/Exception.php';
+require '../phpMailer/src/PHPMailer.php';
+require '../phpMailer/src/SMTP.php';
+
 include ('../connection/connection.php');
 
 // date_default_timezone_set('America/Sao_Paulo');
@@ -132,7 +140,7 @@ if($_POST['operacao'] == 'count_all'){
     try{
 
         $sql = "SELECT 
-                (SELECT COUNT(*) FROM EMPRESTIMO WHERE (ID_STATUS = 1 OR ID_STATUS = 2 OR ID_STATUS = 3) AND ID_ADM = ?) AS TOTAL_EMPRESTIMO,
+                (SELECT COUNT(*) FROM EMPRESTIMO WHERE (ID_STATUS = 1 OR ID_STATUS = 2 OR ID_STATUS = 3 OR ID_STATUS = 4) AND ID_ADM = ?) AS TOTAL_EMPRESTIMO,
                 (SELECT COUNT(*) FROM EMPRESTIMO WHERE ID_STATUS = 3 AND HIST_ID_ADM = ?) AS TOTAL_DEVOLUCAO,
                 (SELECT COUNT(*) FROM USUARIO WHERE ADM_ID = ?) AS TOTAL_USER,
                 (SELECT COUNT(*) FROM LIVRO WHERE ID_ADM = ?) AS TOTAL_LIVRO";
@@ -215,6 +223,109 @@ if($_POST['operacao'] == 'logout'){
         'type' => 'success',
         'message' => 'Adeus'
     ];
+}
+
+if($_POST['operacao'] == 'check'){
+    try{
+
+        $sql = "SELECT EMPRESTIMO.*,
+                USUARIO.NOME AS USERNAME,
+                USUARIO.SERIE AS USERSERIE,
+                USUARIO.TELEFONE AS USERTEL,
+                USUARIO.EMAIL AS USERMAIL,
+                LIVRO.NOME AS BOOKNAME,
+                AUTOR.NOME AS AUTORNAME FROM EMPRESTIMO 
+                JOIN USUARIO ON ID_USER = USUARIO.RA
+                JOIN LIVRO ON ID_LIVRO = LIVRO.TOMBO
+                JOIN AUTOR ON ID_AUTOR = AUTOR.ID
+                WHERE ID_STATUS = 4";
+        $resultado = $pdo->query($sql); //recebe a query dos valores do banco
+
+        while($row = $resultado->fetch(PDO::FETCH_ASSOC)){ //while pra varrer o banco linha por linha usando o FETCH e o row vai ler linha por linha do banco
+            $dados[] = array_map(null, $row); //array pra mapear os dados, recebe 2 parametros
+        }
+
+    }catch(PDOException $e){
+        $dados = [
+            'type' => 'error',
+            'message' => 'Erro de consulta: ' . $e -> getMessage()
+        ];
+    }
+}
+
+if($_POST['operacao'] == 'send'){
+    try{
+
+        $sql = "SELECT EMPRESTIMO.*, 
+                USUARIO.NOME AS USERNAME,
+                USUARIO.EMAIL AS USERMAIL, 
+                LIVRO.NOME AS BOOKNAME
+                FROM EMPRESTIMO
+                JOIN USUARIO ON EMPRESTIMO.ID_USER = USUARIO.RA
+                JOIN LIVRO ON EMPRESTIMO.ID_LIVRO = LIVRO.TOMBO
+                WHERE ID_STATUS = 4";
+        $resultado = $pdo->query($sql); //recebe a query dos valores do banco
+
+        //inicia phpmailer
+        $mail = new PHPMailer(true);
+        try {
+            //Server settings
+            $mail->SMTPDebug = SMTP::DEBUG_OFF;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'bibliotec.etec@gmail.com';                            //SMTP username
+            $mail->Password   = 'gcnd pawc xxvp hxhj';                  //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption (ENCRYPTION_SMTPS)
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 (465) if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->SMTPKeepAlive = true;
+
+            //Recipients
+            $mail->setFrom('bibliotec.etec@gmail.com', 'BiblioTec');
+
+
+            // pega o email e o nome do livro do banco de dados
+            while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+                $userName = $row['USERNAME'];
+                $userEmail = $row['USERMAIL'];
+                $bookName = $row['BOOKNAME'];
+            
+
+                $mail->addAddress($userEmail, $userName);
+
+                //Content
+                $mail->CharSet = 'UTF-8'; 
+                $mail->setLanguage('pt_br', '../PHPMailer/language'); 
+                $mail->isHTML(true);                                        //Set email format to HTML
+                $mail->Subject = 'Aviso de Empréstimo Atrasado';
+                $mail->Body    = "Olá <strong>$userName</strong>! Nós da BiblioTec estamos avisando que você tem um empréstimo em atraso! <br>
+                                O livro <strong>$bookName</strong> está com a devolução vencida. <br>
+                                Por favor, efetue a devolução o quanto antes. <br><br>
+                                Atenciosamente, <br>
+                                <strong>BiblioTec</strong><br>
+                                Tel: (XX) XXXX-XXXX<br>
+                                Email: bibliotec.etec@gmail.com";
+
+                $mail->send();
+                $mail->clearAddresses();
+
+            }
+            $mail->smtpClose();
+
+        } catch (Exception $e) {
+            echo "Mensagem não pôde ser enviada! Mailer Error: {$mail->ErrorInfo}";
+        }
+        $dados = [
+            'type' => 'success',
+            'message' => 'E-mails enviados com sucesso!'
+        ];
+
+    }catch(PDOException $e){
+        $dados = [
+            'type' => 'error',
+            'message' => 'Erro de consulta: ' . $e -> getMessage()
+        ];
+    }
 }
 
 echo json_encode($dados);

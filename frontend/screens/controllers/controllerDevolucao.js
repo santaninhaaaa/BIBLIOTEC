@@ -38,7 +38,7 @@ $(document).ready(function(){
                         <tr>
                             <th class="text-center">${dado.STATNAME}</th>
                             <td class="text-center"><b>(${dado.ID_LIVRO})</b> ${dado.BOOKNAME} - ${dado.AUTORNAME}</td>
-                            <td class="text-center">${dado.DATA_RETIRADA}</td>
+                            <td class="text-center">${dado.PRAZO_DEVOLUCAO}</td>
                             <td class="text-center">
                                 <button id=${dado.ID} class="btn btn-warning btn-renew"><i class="fa-solid fa-arrow-rotate-left"></i></button>
                                 <button id=${dado.ID} class="btn btn-success btn-delete"><i class="fa-solid fa-check"></i></button>

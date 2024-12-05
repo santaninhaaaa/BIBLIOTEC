@@ -50,14 +50,6 @@ $(document).ready(function(){
         
                 }
                 
-                $('.autor').select2({
-                    theme: "bootstrap4",
-                    language: { noResults: function(){ return "Não encontrado"; }},
-                    placeholder: "Selecione o autor",
-                    allowClear: true,
-                    dropdownParent: $('#modal-livro')
-                })
-                
             }
         })
 
@@ -144,6 +136,13 @@ $(document).ready(function(){
         $('#show-item').empty()
         $('#warning-message').empty()
         $('#admin-name').empty()
+        $('.autor').select2({
+            theme: "bootstrap4",
+            language: { noResults: function(){ return "Não encontrado"; }},
+            placeholder: "Selecione o autor",
+            allowClear: true,
+            dropdownParent: $('#modal-livro')
+        })
     })
 
     //criando funcionalidade para preencher a tabela com as info do BD
@@ -223,6 +222,13 @@ $(document).ready(function(){
                         $('.btn-new-input').hide()
                         //alterando o cabeçalho o modal
                         $('.modal-title').empty().append('Edição do livro')
+                        $('.autor').select2({
+                            theme: "bootstrap4",
+                            language: { noResults: function(){ return "Não encontrado"; }},
+                            placeholder: "Selecione o autor",
+                            allowClear: true,
+                            dropdownParent: $('#modal-livro')
+                        })
                         //abrindo modal
                         $('#modal-livro').modal('show')
                     }

@@ -89,7 +89,7 @@ if($_POST['operacao'] == 'read'){
                 JOIN USUARIO ON ID_USER = USUARIO.RA
                 JOIN LIVRO ON ID_LIVRO = LIVRO.TOMBO
                 JOIN AUTOR ON ID_AUTOR = AUTOR.ID
-                WHERE ID_STATUS = 1 OR ID_STATUS = 2";
+                WHERE (ID_STATUS = 1 OR ID_STATUS = 2 OR ID_STATUS = 4)";
                   
         $resultado = $pdo->query($sql); //recebe a query dos valores do banco
         while($row = $resultado->fetch(PDO::FETCH_ASSOC)){ //while pra varrer o banco linha por linha usando o FETCH e o row vai ler linha por linha do banco
@@ -257,10 +257,12 @@ if($_POST['operacao'] == 'verify'){
                 JOIN LIVRO ON ID_LIVRO = LIVRO.TOMBO
                 JOIN AUTOR ON ID_AUTOR = AUTOR.ID
                 JOIN STATUS ON ID_STATUS = STATUS.ID
-                WHERE (ID_STATUS = 1 OR ID_STATUS = 2) AND ID_USER = '" . $_POST['id_user'] . "'";
+                WHERE (ID_STATUS = 1 OR ID_STATUS = 2 OR ID_STATUS = 4) AND ID_USER = '" . $_POST['id_user'] . "'";
         $resultado = $pdo->query($sql); //recebe a query dos valores do banco
         while($row = $resultado->fetch(PDO::FETCH_ASSOC)){ //while pra varrer o banco linha por linha usando o FETCH e o row vai ler linha por linha do banco
-            $dados[] = array_map(null, $row); //array pra mapear os dados, recebe 2 parametros
+
+            $row['PRAZO_DEVOLUCAO'] = date('d/m/Y', strtotime($row['PRAZO_DEVOLUCAO']));
+            $dados[] = $row; //array pra mapear os dados
         }
 
     }catch(PDOException $e){
